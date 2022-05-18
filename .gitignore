@@ -1,0 +1,5 @@
+**.ini
+/model/db.ini
+/model/jwt.ini
+/utils/mailgun.ini
+/view/js/apikey.js

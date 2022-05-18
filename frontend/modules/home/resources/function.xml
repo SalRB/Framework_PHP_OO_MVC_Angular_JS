@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<functions>
+    <function>
+        <name>view</name>
+        <uri>view</uri>
+    </function>
+    <function>
+        <name>HomeBrands</name>
+        <uri>HomeBrands</uri>
+    </function>
+    <function>
+        <name>HomeCategories</name>
+        <uri>HomeCategories</uri>
+    </function>
+    <function>
+        <name>HomeTypes</name>
+        <uri>HomeTypes</uri>
+    </function>
+    <function>
+        <name>load_more</name>
+        <uri>load_more</uri>
+    </function>
+</functions>

@@ -1,0 +1,59 @@
+<div id = "container-contact">
+	<div class = "page-title sp separe-menu">
+		<div class = "container text-center">
+			<h2 data-tr="Contact Us">Contact Us</h2>
+		</div>
+	</div>
+	<div  class = "container separe-menu">
+		<div>
+			<form id = "sendEmail_form"  name = "sendEmail_form" class = "default-form">
+				<h3 class = "tittle">Send us an email</h3>
+				<div>
+					<input required ng-model = "full_name" ng-pattern = "regName" type = "text" class = "text" id = "full_name" name = "full_name" placeholder="Name" autocomplete="off" ng-minlength="6" ng-maxlength="20" required/>
+					<font color="red">
+						<span class="text-danger" ng-show="sendEmail_form.full_name.$error.required && (sendEmail_form.full_name.$dirty || sendEmail_form.full_name.$touched)">Introduzca un nombre</span>
+						<span class="text-danger" ng-show="sendEmail_form.full_name.$error.minlength">Introduzca mas de 6 caracteres</span>
+						<span class="text-danger" ng-show="sendEmail_form.full_name.$error.maxlength">Introduzca menos de 20 caracteres</span>
+					</font>
+	
+				</div>
+				<div>
+					<input required ng-model = "user_email" ng-pattern = "regEmail" type = "text" class = "text" id = "user_email" name = "user_email" placeholder="Email" autocomplete="off" style = "margin-top: 15px" required/>
+					<font color="red">
+						<span class="text-danger" ng-show="sendEmail_form.user_email.$error.required && (sendEmail_form.user_email.$dirty || sendEmail_form.user_email.$touched)">Introduzca un email</span>
+					</font>
+				</div>
+					<select required ng-model = "email_matter" ng-pattern = "regMatter" class = "select" name = "email_matter" id = "email_matter" style = "margin-top: 15px;">
+						<option selected value = "">Select an option</option>
+						<option value = "Problems with the page">Problems with the page</option>
+						<option value = "Suggestions">Suggestions</option>
+						<option value = "Issues when trying to register">Issues when trying to register</option>
+						<option value = "Issues when trying to log in">Issues when trying to register</option>
+						<option value = "Others">Others</option>
+					</select>
+					<font color="red">
+						<span class="text-danger" ng-show="sendEmail_form.user_email.$error.required && (sendEmail_form.email_matter.$dirty || sendEmail_form.user_email.$touched)">Escoja un asunto</span>
+					</font>
+
+				</div>
+				<div>
+					<textarea  ng-model = "email_message" ng-pattern = "regMessage" rows="4" cols="50" name="email_message" id = "email_message" autocomplete="off" placeholder="Message" style = "margin-top:15px" ng-minlength="5" ng-maxlength="200" required></textarea>
+					<!-- No se puede validar un textarea en versiones inferiores a la 1.5 -->
+					<!-- <font color="red">
+						<span class="text-danger" ng-show="sendEmail_form.email_message.$error.required && (sendEmail_form.email_message.$dirty || sendEmail_form.email_message.$touched)">Detalle la razón del contacto</span>
+						<span class="text-danger" ng-show="sendEmail_form.email_message.$error.minlength">Introduzca mas de 5 caracteres</span>
+						<span class="text-danger" ng-show="sendEmail_form.email_message.$error.maxlength">Introduzca menos de 200 caracteres</span>
+					</font> -->
+				</div>
+				<input ng-disabled = "sendEmail_form.full_name.$invalid || sendEmail_form.user_email.$invalid || sendEmail_form.email_matter.$invalid  || sendEmail_form.email_message.$invalid" 
+						ng-click = "sendEmail()" type = "submit" id = "send-email" class = "default-button" value = "Send"/>
+			</form>
+		</div>
+	</div>
+	<div class = "page-middle-title sp separe-menu">
+		<div class = "container text-center">
+			<h2 data-tr="How to find us">How to find us</h2>
+		</div>
+	</div>
+	<div id ="map" style="width:100%;height:400px;"></div>
+</div>

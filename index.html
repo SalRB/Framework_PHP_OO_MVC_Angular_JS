@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html ng-app="Framework_PHP_OO_MVC_ANGULAR_JS" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Coches, no se</title>
+    <!--========== ANGULAR JS ==========-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.9/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.9/angular-route.min.js"></script>
+
+    <!--========== CONTROLLER AND SERVICES ==========-->
+    <script src="frontend/router.js"></script>
+    <script src="frontend/apiconnector.js"></script>
+    <script type="text/javascript" src="frontend\modules\contact\controller\controller_contact.js"></script>
+
+    <!--========== TRANSLATE ==========-->
+    <!-- <script type="text/javascript" src="frontend/views/js/translate.js"></script> -->
+
+    <!--========== TOASTR ==========-->
+    <link rel="stylesheet" href="https://npmcdn.com/angular-toastr/dist/angular-toastr.css" />
+    <script src="https://npmcdn.com/angular-toastr/dist/angular-toastr.tpls.js"></script>
+
+    <!--========== GLIDER ==========-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glider-js@1.7.3/glider.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/glider-js@1.7.3/glider.min.js"></script>
+
+    <!--========== BOX ICONS ==========-->
+    <!-- <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'> -->
+
+    <!--========== CSS ==========-->
+    <link rel="stylesheet" href="frontend\views\css\animate.min.css">
+    <link rel="stylesheet" href="frontend\views\css\bootstrap.min.css">
+    <link rel="stylesheet" href="frontend\views\css\font-awesome.css">
+    <link rel="stylesheet" href="frontend\views\css\font-awesome.min.css">
+    <link rel="stylesheet" href="frontend\views\css\icomoon.css">
+    <link rel="stylesheet" href="frontend\views\css\main.css">
+    <link rel="stylesheet" href="frontend\views\css\owl.carousel.min.css">
+    <link rel="stylesheet" href="frontend\views\css\prettyPhoto.css">
+    <link rel="stylesheet" href="frontend\views\css\responsive.css">
+
+    <!--========== FIREBASE ==========-->
+    <script src="https://www.gstatic.com/firebasejs/3.5.2/firebase.js"></script>
+</head>
+
+<body>
+    <div ng-include='"frontend/views/inc/menu.view.html"'></div>
+    <div ng-view autoscroll="true"></div>
+    <div ng-include='"frontend/views/inc/footer.view.html"'></div>
+</body>
+
+</html>
