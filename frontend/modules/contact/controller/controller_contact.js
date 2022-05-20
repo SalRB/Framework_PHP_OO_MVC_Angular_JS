@@ -37,7 +37,6 @@
 //     });
 // }// end_loadMap
 
-// console.log('controller_contact');
 
 app.controller('controller_contact', function($scope, services, toastr) {
     // addAPI();

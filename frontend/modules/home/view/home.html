@@ -1,2 +1,131 @@
-<div id="homePage">
-</div>
+<!-- <h1>AAAAAAAAAAAAAAAA</h1> -->
+
+<main class="l-main">
+    <!--========== CAROUSEL ==========-->
+    <!-- <div class="carousel">
+            <div class="carousel__container">
+                <button class="carousel__prev">
+                    <i class='bx bx-chevron-left'></i>
+                </button>
+                <div class="carousel__list">
+                    <div class="carousel__elements" ng-repeat="slide in slides">
+                        <img class='carousel__img' id='' src='{{slide.list}}' ng-click = "redirect_shop('categoria', slide.categoria)" alt=''>
+                    </div>
+                </div>
+                <button class="carousel__next">
+                    <i class='bx bx-chevron-right'></i>
+                </button>
+            </div>
+            <div class="carousel__indicator"></div>
+        </div> -->
+    <!--========== CATEGORIES ==========-->
+    <!-- <section class="categories section bd-container" id="categories">
+        <div class="cat">
+            <div class="services__content" ng-repeat="category in categories">
+                <img src='frontend\views\images\home\{{category.category_image}}'
+                    ng-click="redirect_shop('category', category.category_name)" alt='' class='services__img'
+                    id='{{category.category_name}}'>
+                <h3 class='services__title'>{{category.category_name}}</h3>
+            </div>
+        </div>
+    </section> -->
+    <!--========== TYPES ==========-->
+    <!-- <section class="types section bd-container" id="types">
+        <div class="cat">
+            <div class="services__content" ng-repeat="type in types">
+                <img src='frontend\views\images\home\{{type.type_image}}'
+                    ng-click="redirect_shop('categoria', type.type_name)" alt='' class='services__img'
+                    id='{{type.type_name}}'>
+                <h3 class='services__title'>{{type.type_name}}</h3>
+            </div>
+        </div>
+    </section> -->
+
+
+    <section id="feature">
+        <div class="container">
+            <div class="center fadeInDown">
+                <h2 style="margin-top: 30px;">Categorías</h2>
+            </div>
+            <div ng-repeat="category in categories">
+                <div class="features">
+                    <div class="col-md-3 col-sm-4 fadeInDown">
+                        <a>
+                            <div class="feature-wrap">
+                                <img src="frontend\views\images\home\{{category.category_image}}"
+                                    style="border-radius: 5px;" id='{{category.category_name}}'
+                                    ng-click="redirect_shop('category', category.category_name)">
+                                <h2 style="padding-top: 1em;">{{category.category_name}}</h2 9>
+                            </div 7>
+                        </a 6>
+                    </div 5>
+                </div 4>
+            </div 3>
+        </div 1>
+    </section>
+
+    <section id="feature">
+        <div class="container">
+            <div class="center fadeInDown">
+                <h2 style="margin-top: 30px;">Tipos</h2>
+            </div>
+            <div ng-repeat="type in types">
+                <div class="features">
+                    <div class="col-md-3 col-sm-4 fadeInDown">
+                        <a>
+                            <div class="feature-wrap">
+                                <img src="frontend\views\images\home\{{type.type_image}}" style="border-radius: 5px;"
+                                    id='{{type.type_name}}' ng-click="redirect_shop('type', type.type_name)">
+                                <h2 style="padding-top: 1em;">{{type.type_name}}</h2>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- $('<section></section>').attr({ 'id': "feature" }).appendTo('#categories');
+    $('<div></div>').attr({ 'id': "div1", 'class': 'container' }).appendTo('#feature');
+    $('<div></div>').attr({ 'id': "div2", 'class': 'center fadeInDown' }).appendTo('#div1');
+    $('<h2></h2>').attr({ 'style': "margin-top: 30px;" }).html('Categorías').appendTo('#div2');
+    $('<div></div>').attr({ 'id': "div3", 'class': 'row' }).appendTo('#div1');
+    $('<div></div>').attr({ 'id': "div4", 'class': 'features' }).appendTo('#div3');
+
+
+    $('<div></div>').attr({ 'id': 'div5' + row, 'class': 'col-md-3 col-sm-4 fadeInDown ' + data[row].category_name + '
+    divCategory', 'attSearch': data[row].category_name, }).appendTo('#div4');
+    $('<a></a>').attr({ 'id': "div6" + row }).appendTo('#div5' + row);
+    $('<div></div>').attr({ 'id': "div7" + row, 'class': 'feature-wrap' }).appendTo('#div6' + row);
+    $('<img></img>').attr({ 'id': "div8" + row, 'src': 'http://localhost/Framework_PHP_OO_MVC/views/images/home/' +
+    data[row].category_image + '', 'style': 'border-radius: 5px' }).appendTo('#div7' + row);
+    $('<h2></h2>').html(data[row].category_name).attr({ 'id': "div9", 'style': 'padding-top: 1em' }).appendTo('#div7' +
+    row);
+
+    <section>
+        <div 1>
+            <div 2>
+                <h2>Tipos</h2>
+            </div 2>
+            <div 3>
+                <div 4>
+                    <div 5>
+                        <a 6>
+                            <div 7>
+                                <img 8>
+                                <h2 9></h2 9>
+                            </div 7>
+                        </a 6>
+                    </div 5>
+                </div 4>
+            </div 3>
+        </div 1>
+    </section> -->
+
+
+
+
+
+</main>

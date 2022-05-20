@@ -53,7 +53,6 @@
 	?>
 
 	<script src="<?php echo SITE_PATH ?>views/js/translate.js"></script>
-	<script src="<?php echo SITE_PATH ?>modules\home\controller\controller_home.js"></script>
 	<script src="<?php echo SITE_PATH ?>views\js\utils.js"></script>
 	<script src="<?php echo SITE_PATH ?>modules\search\view\js\search.js"></script>
 

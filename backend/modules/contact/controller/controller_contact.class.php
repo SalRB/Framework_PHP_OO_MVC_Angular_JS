@@ -1,10 +1,6 @@
 <?php
 class controller_contact
 {
-	function view()
-	{
-		common::load_view('top_page_contact.php', 'modules/contact/view/contact_list.html');
-	}
 
 	function sendEmail()
 	{

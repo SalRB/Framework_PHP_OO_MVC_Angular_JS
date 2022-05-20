@@ -6,63 +6,65 @@ app.config(['$routeProvider', function ($routeProvider) {
             templateUrl: "frontend/modules/home/view/home.html", 
             controller: "controller_home",
             resolve: {
-                carousel: function (services) {
-                    return services.get('home','carousel');
-                },
-                categoria: function (services) {
-                    return services.get('home','categoria');
-                },
                 brands: function (services) {
-                    return services.get('home','brands');
-                }
-            }
-        }).when("/shop", {
-            templateUrl: "frontend/modules/shop/view/shop.html", 
-            controller: "controller_shop",
-            resolve: {
-                filters: function (services) {
-                    return services.get('shop', 'filters');
+                    // console.log(services.get('home','HomeBrands'));
+                    return services.get('home','HomeBrands');
                 },
-                list_products: function (services) {
-                    return services.get('shop', 'list_products');
+                categories: function (services) {
+                    // console.log(services.get('home','HomeCategories'));
+                    return services.get('home','HomeCategories');
+                },
+                types: function (services) {
+                    return services.get('home','HomeTypes');
                 }
             }
-        }).when("/product/:token", {
-            templateUrl: "frontend/modules/shop/view/shop.html", 
-            controller: "controller_shop",
-            resolve: {
-                filters: function () {},
-                list_products: function () {}
-            }
+        // }).when("/shop", {
+        //     templateUrl: "frontend/modules/shop/view/shop.html", 
+        //     controller: "controller_shop",
+        //     resolve: {
+        //         filters: function (services) {
+        //             return services.get('shop', 'filters');
+        //         },
+        //         list_products: function (services) {
+        //             return services.get('shop', 'list_products');
+        //         }
+        //     }
+        // }).when("/product/:token", {
+        //     templateUrl: "frontend/modules/shop/view/shop.html", 
+        //     controller: "controller_shop",
+        //     resolve: {
+        //         filters: function () {},
+        //         list_products: function () {}
+        //     }
         }).when("/contact", {
             templateUrl: "frontend/modules/contact/view/contact.html", 
             controller: "controller_contact"
-        }).when("/login", {
-            templateUrl: "frontend/modules/login/view/login.html", 
-            controller: "controller_login"
-        }).when("/logout", {
-            templateUrl: "frontend/modules/login/view/login.html", 
-            controller: "controller_login"
-        }).when("/register", {
-            templateUrl: "frontend/modules/login/view/login.html", 
-            controller: "controller_login"
-        }).when("/verify/:token", {
-            templateUrl: "frontend/modules/login/view/login.html", 
-            controller: "controller_login"
-        }).when("/recover", {
-            templateUrl: "frontend/modules/login/view/login.html", 
-            controller: "controller_login"
-        }).when("/recover/:token", {
-            templateUrl: "frontend/modules/login/view/login.html", 
-            controller: "controller_login"
-        }).when("/cart", {
-            templateUrl: "frontend/modules/cart/view/cart.html", 
-            controller: "controller_cart",
-            resolve: {
-                list_products: function (services) {
-                    return services.post('cart', 'load_cart', {token: localStorage.token});
-                }
-            }
+        // }).when("/login", {
+        //     templateUrl: "frontend/modules/login/view/login.html", 
+        //     controller: "controller_login"
+        // }).when("/logout", {
+        //     templateUrl: "frontend/modules/login/view/login.html", 
+        //     controller: "controller_login"
+        // }).when("/register", {
+        //     templateUrl: "frontend/modules/login/view/login.html", 
+        //     controller: "controller_login"
+        // }).when("/verify/:token", {
+        //     templateUrl: "frontend/modules/login/view/login.html", 
+        //     controller: "controller_login"
+        // }).when("/recover", {
+        //     templateUrl: "frontend/modules/login/view/login.html", 
+        //     controller: "controller_login"
+        // }).when("/recover/:token", {
+        //     templateUrl: "frontend/modules/login/view/login.html", 
+        //     controller: "controller_login"
+        // }).when("/cart", {
+        //     templateUrl: "frontend/modules/cart/view/cart.html", 
+        //     controller: "controller_cart",
+        //     resolve: {
+        //         list_products: function (services) {
+        //             return services.post('cart', 'load_cart', {token: localStorage.token});
+        //         }
+        //     }
         }).otherwise("/home", {
             templateUrl: "frontend/modules/home/view/home.html", 
             controller: "controller_home",
