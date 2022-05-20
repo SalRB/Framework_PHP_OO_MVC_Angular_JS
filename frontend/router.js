@@ -11,24 +11,24 @@ app.config(['$routeProvider', function ($routeProvider) {
                     return services.get('home','HomeBrands');
                 },
                 categories: function (services) {
-                    // console.log(services.get('home','HomeCategories'));
                     return services.get('home','HomeCategories');
                 },
                 types: function (services) {
                     return services.get('home','HomeTypes');
                 }
             }
-        // }).when("/shop", {
-        //     templateUrl: "frontend/modules/shop/view/shop.html", 
-        //     controller: "controller_shop",
-        //     resolve: {
-        //         filters: function (services) {
-        //             return services.get('shop', 'filters');
-        //         },
-        //         list_products: function (services) {
-        //             return services.get('shop', 'list_products');
-        //         }
-        //     }
+        }).when("/shop", {
+            templateUrl: "frontend/modules/shop/view/shop.html", 
+            controller: "controller_shop",
+            resolve: {
+                filters: function (services) {
+                    return services.get('shop', 'FiltersContent');
+                },
+                
+                // list_products: function (services) {
+                //     return services.get('shop', 'list_products');
+                // }
+            }
         // }).when("/product/:token", {
         //     templateUrl: "frontend/modules/shop/view/shop.html", 
         //     controller: "controller_shop",

@@ -1,2 +1,163 @@
-<div id="shopPage">
+<!-- <div class="shop__container">
+    <div class="shop__list" ng-show="show_list_product">
+        <br><br><br><br>
+        <div class="filters__container">
+            <form autocomplete="on" method="post" name="filter" id="filter" >
+                <div class="filters__content" ng-repeat="(key, filter) in filters">
+                    <label class="filters__title">{{key}}</label>
+                    <div class="filters__input" ng-repeat="value in filter">
+                        <input class='check' id="{{key}}" ng-repeat="name in value" type='checkbox' ng-click = "filter_products(name, key)"/>
+                        <label for='talla' ng-repeat="name in value" value='{{name}}'>{{name}}</label>        
+                    </div>
+                    <br>
+                </div>
+            </form>
+        </div> -->
+
+<div style="margin-left: 3%; position: absolute; top: 233px;">
+    <form>
+        <div ng-repeat="(key, filters) in filters">
+            <h4>{{key | uppercase}}:</h4>
+
+            <div ng-repeat="filter in filters">
+                <input type="checkbox" id="{{key}}{{filter.brand}}">
+                <label for="{{key}}{{filter.brand}}" ng-repeat="name in filter">{{name}}</label>
+            </div>
+
+
+        </div>
+    </form>
 </div>
+
+
+
+
+<!-- // $('<div></div>').attr({ 'id': "AAA", 'style': "margin-left: 3%; position: absolute; top: 233px"
+}).appendTo('#shopPage').html(
+// '<form id="form">' +
+    // '</select>' +
+    // '</form>'
+// )
+
+// $('<h4></h4>').appendTo('#form').html('Brands:');
+
+// for (row1 in data.brand) {
+// $('<br></br>').appendTo('#form');
+// $('<input></input>').attr({ 'id': data.brand[row1].brand, 'value': data.brand[row1].brand, 'type': "checkbox",
+'class': 'brand' }).appendTo('#form').html(data.brand[row1].brand);
+// $('<label></label>').attr({ 'id': "brand", 'for': data.brand[row1].brand
+}).appendTo('#form').html(data.brand[row1].brand);
+// }
+
+// $('<br></br>').appendTo('#form');
+// $('<br></br>').appendTo('#form');
+// $('<h4></h4>').appendTo('#form').html('Type:');
+
+// for (row2 in data.type) {
+// $('<br></br>').appendTo('#form');
+// $('<input></input>').attr({ 'id': data.type[row2].type, 'value': data.type[row2].type, 'type': "checkbox", 'class':
+'type' }).appendTo('#form').html(data.type[row2].type);
+// $('<label></label>').attr({ 'id': "type", 'for': data.type[row2].type
+}).appendTo('#form').html(data.type[row2].type);
+// }
+
+// $('<br></br>').appendTo('#form');
+// $('<br></br>').appendTo('#form');
+// $('<h4></h4>').appendTo('#form').html('Category:');
+
+// for (row3 in data.category) {
+// $('<br></br>').appendTo('#form');
+// $('<input></input>').attr({ 'id': data.category[row3].category, 'value': data.category[row3].category, 'type':
+"checkbox", 'class': 'category' }).appendTo('#form').html(data.category[row3].category);
+// $('<label></label>').attr({ 'id': "category", 'for': data.category[row3].category
+}).appendTo('#form').html(data.category[row3].category);
+// }
+
+// $('<br></br>').appendTo('#form');
+// $('<br></br>').appendTo('#form');
+// $('<h4></h4>').appendTo('#form').html('Order by:');
+
+
+// $('<br></br>').appendTo('#form');
+// $('<select></select>').attr({ 'id': "orderBySelect", 'name': "orderBySelect" }).appendTo('#form');
+// $('<option></option>').attr({ 'value': 'none', 'selected': '', 'disabled': '', 'hidden': ''
+}).appendTo('#orderBySelect').html('By');
+// $('<option></option>').attr({ 'value': 'price' }).appendTo('#orderBySelect').html('price');
+// $('<option></option>').attr({ 'value': 'km' }).appendTo('#orderBySelect').html('km');
+
+
+// $('<br></br>').appendTo('#form');
+// $('<button></button>').attr({ 'style': "margin-top: 20px;", 'id': 'button', 'type': 'button'
+}).appendTo('#form').html('Submit');
+// $('<button></button>').attr({ 'style': "margin-top: 20px;", 'id': 'reset', 'type': 'button'
+}).appendTo('#form').html('Reset');
+ -->
+
+
+
+<!-- <div class="shop__list">
+            <div class="list__container">
+                <div class="list__content" id="list_product" ng-repeat="product in list_products">
+                    <div class='list__product' id='{{product.codigo_producto}}'> 
+                        <div class='list__heart' id='{{product.codigo_producto}}' ng-click="add_favs()"> 
+                            <i id='like' class='bx {{product.favs_class}}'> </i> 
+                        </div>
+                        <div class='list__imges' id='{{product.codigo_producto}}' ng-click="load_details()"> 
+                            <img class='list__img' src='http://localhost/website/frontend/{{product.images}}'> 
+                        </div>
+                        <div class='list__data' id='#'> 
+                            <div class='list__brand'> 
+                                <div class='list__name'>{{product.nombre}}</div>
+                                <div class='list__price'>{{product.precio}}</div> 
+                            </div>
+                            <div class='list__descriptionc'>
+                                <div class='list__codigo_producto'> {{product.codigo_producto}} </div> 
+                            </div> 
+                        </div> 
+                    </div>
+                </div>
+            </div>
+        </div>
+        <ul style="display: flex; align-items: center; justify-content: center">
+            <li><a href="" ng-click="change_page(current_page - 1)" ng-show="show1">Previous</a></li>
+            <li><a href="" ng-repeat="page in pages" ng-click="change_page(page)">{{page}}</a></li>
+            <li><a href="" ng-click="change_page(current_page + 1)" ng-show="show2">Next</a></li>
+        </ul>
+    </div>
+
+    <div class="shop__details" ng-show="show_details">
+        <div class='container py-xl-5 py-lg-3'> 
+            <div class='row' ng-repeat="product in list_products">
+                <div class='col-lg-6 left-wthree-img text-right'>
+                    <img src='http://localhost/website/frontend/{{product.images}}' alt='' class='img-fluid mt-5'/> 
+                    <div class='list__heart' id='{{product.codigo_producto}}' ng-click="add_favs()">
+                        <br><br><br><br><br>
+                        <i id='like' class='bx {{product.favs_class}}'> </i> 
+                    </div>
+                </div> 
+                <div class='col-lg-6 about-right-faq'> 
+                </br> </br> </br> </br> 
+                <h3 class='text-da'>{{product.nombre}}</h3> 
+                <ul class='w3l-right-book mt-4'> 
+                    <li>Codigo Producto: {{product.codigo_producto}}</li>
+                    <li>Nombre: {{product.nombre}}</li> 
+                    <li>Precio: {{product.precio}}</li> 
+                    <li>Talla: {{product.talla}}</li> 
+                    <li>Color: {{product.color}}</li> 
+                    <li>Descripcion: {{product.descripcion}}</li> 
+                </ul>  
+                <button id='product.codigo_producto' class='button' ng-click='add_cart(product.codigo_producto)'>Add To Cart</button>
+                <a class='button'  href="#/shop">Volver</a> 
+            </div> 
+        </div> 
+        <br>
+        <br>
+        <div class="cat">
+            <div class="services__details" ng-repeat="item in api_content.items">
+                <img src='{{item.volumeInfo.imageLinks.smallThumbnail}}' alt='' class='services__img' id='{{item.volumeInfo.title}}'>        
+                <h3 class='services__title'>{{item.volumeInfo.title}}</h3>
+            </div>
+        </div>
+    </div>
+</div>
+ -->

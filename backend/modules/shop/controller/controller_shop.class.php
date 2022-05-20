@@ -16,8 +16,6 @@ class controller_shop
 
     function AllCars()
     {
-        // echo json_encode($_POST);
-        // exit;
         echo json_encode(common::load_model('shop_model', 'get_list_products', [$_POST]));
     }
 
@@ -33,8 +31,6 @@ class controller_shop
 
     function CountWithFilters()
     {
-        // echo json_encode($_POST['params']);
-        // exit;
         echo json_encode(common::load_model('shop_model', 'get_list_count_with_filters', $_POST));
     }
 
