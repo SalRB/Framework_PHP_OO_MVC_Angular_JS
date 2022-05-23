@@ -8,8 +8,6 @@ class controller_login
 
     function login()
     {
-        // echo json_encode($_POST['username']);
-        // exit;
         echo json_encode(common::load_model('login_model', 'get_login', [$_POST['username'], $_POST['password']]));
     }
 
@@ -20,84 +18,32 @@ class controller_login
 
     function register()
     {
-        $result = json_encode(common::load_model('login_model', 'get_register', $_POST));
-        if ($result != '"error"') {
-            $message = [
-                'type' => 'validate',
-                'token' => $result,
-                'toEmail' => $_POST['email']
-            ];
-            $email = json_decode(mail::send_email($message), true);
-            if (!empty($email)) {
-                echo json_encode('enviado');
-                return;
-            }
-        } else {
-            echo json_encode('error');
-            return;
-        }
+        echo json_encode(common::load_model('login_model', 'get_register', $_POST));
     }
 
     function verify_email()
     {
         echo json_encode(common::load_model('login_model', 'get_verify_email', $_POST['token']));
-        exit;
-
-        // $verify = json_encode(common::load_model('login_model', 'get_verify_email', $_POST['token']));
-        // if (!empty($verify)) {
-        //     return;
-        // }
     }
 
     function send_recover_email()
     {
-        $result = json_encode(common::load_model('login_model', 'get_recover_email', $_POST['email']));
-        $result = explode('"', $result);
-        $result = $result[1];
-
-        if ($result) {
-            $message = [
-                'type' => 'recover',
-                'token' => $result,
-                'toEmail' => $_POST['email']
-            ];
-            $email = json_decode(mail::send_email($message), true);
-
-            if (!empty($email)) {
-                echo json_encode('done');
-                return;
-            }
-        } else {
-            echo json_encode('fail');
-            return;
-        }
+        echo json_encode(common::load_model('login_model', 'get_recover_email', $_POST['email']));
     }
 
     function verify_token()
     {
-        $verify = json_encode(common::load_model('login_model', 'get_verify_token', $_POST['token']));
-        if (!empty($verify)) {
-            echo $verify;
-            return;
-        }
+        echo json_encode(common::load_model('login_model', 'get_verify_token', $_POST['token']));
     }
 
     function new_password()
     {
-        // echo json_encode([$_POST['data']['token'], $_POST['data']['password']]);
-        // exit;
-        $password = json_encode(common::load_model('login_model', 'get_new_password', [$_POST['data']['token'], $_POST['data']['password']]));
-        echo json_encode($password);
-        exit;
-        if (!empty($password)) {
-            echo json_encode($password);
-            return;
-        }
+        echo json_encode(common::load_model('login_model', 'get_new_password', [$_POST['data']['token'], $_POST['data']['password']]));
     }
 
     function logout()
     {
-        echo json_encode('Done');
+        echo json_encode(common::load_model('login_model', 'get_logout'));
     }
 
     function data_user()
@@ -105,4 +51,25 @@ class controller_login
         echo json_encode(common::load_model('login_model', 'get_data_user', $_POST['token']));
     }
 
+    // Activity
+
+    function control_user()
+    {
+        echo json_encode(common::load_model('login_model', 'get_control_user', $_POST['token']));
+    }
+
+    function actividad()
+    {
+        echo json_encode(common::load_model('login_model', 'get_actividad'));
+    }
+
+    function refresh_token()
+    {
+        echo json_encode(common::load_model('login_model', 'get_refresh_token', $_POST['token']));
+    }
+
+    function refresh_cookie()
+    {
+        echo json_encode(common::load_model('login_model', 'get_refresh_cookie'));
+    }
 }

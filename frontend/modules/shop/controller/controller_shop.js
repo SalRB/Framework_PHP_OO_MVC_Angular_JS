@@ -1,14 +1,15 @@
 
 // app.controller('controller_shop', function($scope, $rootScope, $route, filters, list_products, services_shop) {
-app.controller('controller_shop', function($scope, $rootScope, $route, filters) {
+app.controller('controller_shop', function($scope, $rootScope, $route, filters, list_products) {
     
 
     // console.log($scope);
     // console.log($rootScope);
     // console.log($route);
-    console.log(filters);
-
+    // console.log(filters);
+console.log(list_products);
     $scope.filters = filters;
+    $scope.products = list_products;
 
     // let talla = [];
     // let color = [];

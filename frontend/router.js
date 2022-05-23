@@ -24,10 +24,9 @@ app.config(['$routeProvider', function ($routeProvider) {
                 filters: function (services) {
                     return services.get('shop', 'FiltersContent');
                 },
-                
-                // list_products: function (services) {
-                //     return services.get('shop', 'list_products');
-                // }
+                list_products: function (services) {
+                    return services.get('shop', 'AllCars');
+                }
             }
         // }).when("/product/:token", {
         //     templateUrl: "frontend/modules/shop/view/shop.html", 

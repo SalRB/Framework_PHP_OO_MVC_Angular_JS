@@ -22,7 +22,6 @@ class controller_home
     function HomeTypes()
     {
         echo json_encode(common::load_model('home_model', 'get_types'));
-        // echo json_encode(common::load_model('home_model', 'get_types', [$_POST['items'], $_POST['loaded']]));
     }
 
     function load_more()

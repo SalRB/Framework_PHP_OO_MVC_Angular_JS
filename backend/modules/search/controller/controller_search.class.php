@@ -1,5 +1,4 @@
 <?php
-// require_once(SITE_ROOT . 'modules\search\model\model\search_model.class.singleton.php');
 class controller_search
 {
     function CategoriesSearch()

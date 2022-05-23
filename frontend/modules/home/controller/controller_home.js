@@ -14,7 +14,6 @@ app.controller('controller_home', function($scope, $window, brands, categories, 
     // let total = brands.length;
     
     
-    // console.log('patata');
 
     // $scope.slides = carousel;
     // console.log(category);
