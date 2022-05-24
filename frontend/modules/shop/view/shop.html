@@ -14,64 +14,111 @@
             </form>
         </div> -->
 
-<div style="margin-left: 3%; position: absolute; top: 233px;">
-    <form>
-        <div ng-repeat="(key, filters) in filters">
-            <h4>{{key | uppercase}}:</h4>
 
-            <div ng-repeat="filter in filters">
-                <input type="checkbox" id="{{key}}{{filter.brand}}">
-                <label for="{{key}}{{filter.brand}}" ng-repeat="name in filter">{{name}}</label>
+<div ng-show="show_list_product">
+    <div style="margin-left: 3%; position: absolute; top: 233px;">
+        <form>
+            <div ng-repeat="(key, filters) in filters">
+                <h4>{{key | uppercase}}:</h4>
+
+                <div ng-repeat="filter in filters">
+                    <input type="checkbox" id="{{key}}{{filter.brand}}">
+                    <label for="{{key}}{{filter.brand}}" ng-repeat="name in filter">{{name}}</label>
+                </div>
+
+
             </div>
+        </form>
+    </div>
 
-
-        </div>
-    </form>
-</div>
-
-
-
-<div>
-    <div id="cosa0">
-        <div ng-repeat="product in products" id="cosa1">
-            <div id="cosa3">
-                <h1 id="cosa4">{{product.brand}} {{product.model}}</h1>
-                <h1 id="cosa5">{{product.price}}€ {{product.category}}</h1>
-                <h1 id="cosa5">{{product.km}} KM</h1>
-            </div>
-            <div id="clearfix">
-                <div style="position: relative;">
-                    <img id="imagen" src="frontend\views\images\cars\{{product.image}}">
-                    <i class="topright fa fa-heart-o" id=""></i>
+    <div>
+        <div id="cosa0">
+            <div ng-repeat="product in products" id="cosa1">
+                <div id="cosa3" ng-click="load_details()">
+                    <h1 id="cosa4">{{product.brand}} {{product.model}}</h1>
+                    <h1 id="cosa5">{{product.price}}€ {{product.category}}</h1>
+                    <h1 id="cosa5">{{product.km}} KM</h1>
+                </div>
+                <div id="clearfix">
+                    <div style="position: relative;">
+                        <img id="imagen" src="frontend\views\images\cars\{{product.image}}">
+                        <i class="topright fa fa-heart-o" id=""></i>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-<!-- $('<div></div>').attr({ 'id': "divCars", 'class': "divCars" }).appendTo('#shopPage');
- $('<div></div>').attr({ 'id': "cosa0", 'class': "cosa0" }).appendTo('#divCars');
-}).appendTo('#shopPage').html('<p> </p>');
+<div ng-show="show_details" ng-repeat="product in products[0]">
 
- for (row in data) {
- $('<div></div>').attr({ 'class': data[row].ID, 'id': "cosa1", 'car_id': data[row].ID }).appendTo('.cosa0');
- $('<div></div>').attr({ 'class': "cosa3" + row, 'id': "cosa3", 'car_id': data[row].ID }).appendTo('.' +
-data[row].ID);
- $('<div></div>').attr({ 'class': "clearfix" + row, 'id': "clearfix" }).appendTo('.' + data[row].ID);
- $('<h1></h1>').html(data[row].brand + ' ' + data[row].model).attr({ 'class': "cosa4" + row, 'id': "cosa4"
-}).appendTo('.cosa3' + row);
- $('<h1></h1>').html(data[row].price + '€ ' + data[row].category).attr({ 'class': "cosa5" + row, 'id': "cosa5"
-}).appendTo('.cosa3' + row);
- $('<h1></h1>').html(data[row].km + ' KM').attr({ 'class': "cosa5" + row, 'id': "cosa5" }).appendTo('.cosa3' + row);
- $('<div></div>').attr({ 'class': "divImagen" + data[row].ID, 'id': "divImagen" + data[row].ID, 'style': 'position:
-relative;' }).appendTo('.clearfix' + row);
- $('<img></img>').attr({ 'class': "imagen" + row, 'id': "imagen", 'src':
-'http://localhost/Framework_PHP_OO_MVC/views/images/cars/' + data[row].image + '' }).appendTo('#divImagen' +
-data[row].ID);
+    <!-- <div id="div0" style="width: 50%; margin-left: 4%; margin-top: 50px" class="section">
+        <section id="main-slider" class="section">
+            <div id="div1" class="carousel slide">
+                <ol id="ol" class="carousel-indicators" style="top: 450px;">
+                    <li id="AAA" class="active" data-target="#main-slider" data-slide-to="0"></li>
+                    <li id="AAA" data-target="#main-slider" data-slide-to="1"></li>
+                    <li id="AAA" data-target="#main-slider" data-slide-to="2"></li>
+                    <li id="AAA" data-target="#main-slider" data-slide-to="3"></li>
+                    <li id="AAA" data-target="#main-slider" data-slide-to="4"></li>
+                    <li id="AAA" data-target="#main-slider" data-slide-to="5"></li>
+                    <li id="AAA" data-target="#main-slider" data-slide-to="6"></li>
+                </ol>
+                <div id="div2" class="carousel-inner">
+                    <div id="AAA" class="item active"
+                        style="background-image: url(http://localhost/Framework_PHP_OO_MVC/views/images/cars/audiA3.jpg); border-radius: 25px; max-height: 500px;">
+                    </div>
+                    <div id="AAA" class="item"
+                        style="background-image: url(http://localhost/Framework_PHP_OO_MVC/views/images/cars/bmw.jpg); max-height: 500px; border-radius: 25px;">
+                    </div>
+                    <div id="AAA" class="item"
+                        style="background-image: url(http://localhost/Framework_PHP_OO_MVC/views/images/cars/peugeot.jpg); max-height: 500px; border-radius: 25px;">
+                    </div>
+                    <div id="AAA" class="item"
+                        style="background-image: url(http://localhost/Framework_PHP_OO_MVC/views/images/cars/multipla.jpg); max-height: 500px; border-radius: 25px;">
+                    </div>
+                    <div id="AAA" class="item"
+                        style="background-image: url(http://localhost/Framework_PHP_OO_MVC/views/images/cars/multipla.jpg); max-height: 500px; border-radius: 25px;">
+                    </div>
+                    <div id="AAA" class="item"
+                        style="background-image: url(http://localhost/Framework_PHP_OO_MVC/views/images/cars/multipla.jpg); max-height: 500px; border-radius: 25px;">
+                    </div>
+                    <div id="AAA" class="item"
+                        style="background-image: url(http://localhost/Framework_PHP_OO_MVC/views/images/cars/multipla.jpg); max-height: 500px; border-radius: 25px;">
+                    </div>
+                </div>
+            </div><a id="arrow1" class="prev hidden-xs hidden-sm" href="#main-slider" data-slide="prev"><i
+                    class="fa fa-chevron-left"></i></a><a id="arrow2" class="next hidden-xs hidden-sm"
+                href="#main-slider" data-slide="next"><i class="fa fa-chevron-right"></i></a>
+        </section>
+    </div> -->
+    <div id="AAA" style="position: absolute; top: 20%; left: 60%; display: contents;">
+        <div style="position: absolute; top: 20%; left: 60%;">
+            <h1 style="font-size: 48px;">{{product.brand}} {{product.model}}</h1>
+            <h1 style="font-size: 24; color: rgb(177, 41, 0);">{{product.price}}€</h1>
+            <h1 style="font-size: 24;"><img src="http://localhost/Framework_PHP_OO_MVC/views/images/icons/car-door.png" style="max-height: 45px;"> {{product.doors}} |
+                <img src="http://localhost/Framework_PHP_OO_MVC/views/images/icons/seat.png" style="max-height: 45px;">{{product.capacity}}
+            </h1>
+            <h1 style="font-size: 24;"><img src="http://localhost/Framework_PHP_OO_MVC/views/images/icons/fuel.png" style="max-height: 45px;"> {{product.type}}</h1>
+            <h1 style="font-size: 24;">Estado: {{product.category}}</h1>
+        </div>
+    </div>
+</div>
 
-');
- $('<i></i>').attr({ 'class': "topright fa fa-heart-o elbotondelike", 'id': "heart" + data[row].ID, 'car_id':
-data[row].ID }).appendTo('#divImagen' + data[row].ID).html('<h3></h3>'); -->
+<!-- <div id="divRelated"
+            style="width: 70%; height: 500px; margin-top: 33px; margin-left: auto; margin-right: auto;">
+            <div id="divRelatedItems" style="width: 100%; margin-top: 5 px;">
+                <div id="related6" style="margin-top: 3px; width: 20%;" class="related_car" car_id="6">
+                    <h1>AUDI</h1><img id="img" src="http://localhost/Framework_PHP_OO_MVC/views/images/cars/audiA3.jpg"
+                        style="margin-top: 3px; width: 100%;">
+                </div>
+            </div>
+            <div id="divButton" style="margin-top: 3px; margin: auto; width: 202px;"><button id="relatedButton"
+                    style="">
+                    <h1>Load More</h1>
+                </button></div>
+        </div> -->
+
 
 
 <!-- <div class="shop__list">

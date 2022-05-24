@@ -1,10 +1,24 @@
 app.controller('controller_home', function($scope, $window, brands, categories, types) {
 
     
-    // $scope.slides = carousel;
     $scope.categories = categories;
     $scope.types = types;
-    // $scope.brands = brands.slice(0, loaded);
+    $scope.brands = brands;
+
+
+
+    window.addEventListener('load', function(){
+      new Glider(document.querySelector('.carousel__list'),{ 
+          slidesToShow: 1,
+          dots: '.carousel__indicator',
+          draggable: false,
+          arrows: {
+              prev: '.carousel__prev',
+              next: '.carousel__next'
+          }
+      });
+    });
+
 
 
 })
@@ -19,6 +33,8 @@ app.controller('controller_home', function($scope, $window, brands, categories, 
     // console.log(category);
     // $scope.categories = category;
     // $scope.brands = brands.slice(0, loaded);
+
+
 
     // window.addEventListener('load', function(){
     //   new Glider(document.querySelector('.carousel__list'),{ 

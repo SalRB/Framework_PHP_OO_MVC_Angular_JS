@@ -7,7 +7,6 @@ app.config(['$routeProvider', function ($routeProvider) {
             controller: "controller_home",
             resolve: {
                 brands: function (services) {
-                    // console.log(services.get('home','HomeBrands'));
                     return services.get('home','HomeBrands');
                 },
                 categories: function (services) {
@@ -28,13 +27,13 @@ app.config(['$routeProvider', function ($routeProvider) {
                     return services.get('shop', 'AllCars');
                 }
             }
-        // }).when("/product/:token", {
-        //     templateUrl: "frontend/modules/shop/view/shop.html", 
-        //     controller: "controller_shop",
-        //     resolve: {
-        //         filters: function () {},
-        //         list_products: function () {}
-        //     }
+        }).when("/product/:token", {
+            templateUrl: "frontend/modules/shop/view/shop.html", 
+            controller: "controller_shop",
+            resolve: {
+                filters: function () {},
+                list_products: function () {}
+            }
         }).when("/contact", {
             templateUrl: "frontend/modules/contact/view/contact.html", 
             controller: "controller_contact"

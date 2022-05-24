@@ -14,7 +14,7 @@
         }
 
         public function select_data_carousel($db) {
-            $sql = "SELECT * FROM `brand`";
+            $sql = "SELECT * FROM `brand` LIMIT 5";
             $stmt = $db->ejecutar($sql);
             return $db->listar($stmt);
         }
