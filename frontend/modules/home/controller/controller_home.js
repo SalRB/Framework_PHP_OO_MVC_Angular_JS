@@ -6,18 +6,21 @@ app.controller('controller_home', function($scope, $window, brands, categories, 
     $scope.brands = brands;
 
 
+    setTimeout(load_slider, 50); // con menos de 50 falla de vez en cuando
 
-    window.addEventListener('load', function(){
-      new Glider(document.querySelector('.carousel__list'),{ 
-          slidesToShow: 1,
-          dots: '.carousel__indicator',
-          draggable: false,
-          arrows: {
-              prev: '.carousel__prev',
-              next: '.carousel__next'
-          }
-      });
-    });
+    
+
+    function load_slider() {
+        new Glider(document.querySelector('.carousel__list'), {
+            slidesToShow: 1,
+            dots: '.carousel__indicator',
+            draggable: false,
+            arrows: {
+                prev: '.carousel__prev',
+                next: '.carousel__next'
+            }
+        });
+    }
 
 
 

@@ -1,6 +1,6 @@
 
 // app.controller('controller_shop', function($scope, $rootScope, $route, filters, list_products, services_shop) {
-app.controller('controller_shop', function ($scope, $rootScope, $route, filters, list_products, services_shop) {
+app.controller('controller_shop', function ($scope, $window, $rootScope, $route, filters, list_products, services_shop) {
 
     // console.log(list_products);
     // $scope.filters = filters;
@@ -13,12 +13,11 @@ app.controller('controller_shop', function ($scope, $rootScope, $route, filters,
 
 
     $scope.load_details = function () {
-        // console.log(this.product.ID);
         location.href = "#/product/" + this.product.ID;
     };
 
     let path = $route.current.originalPath.split('/');
-    // console.log(path[1]);
+
     if (path[1] === 'shop') {
         $scope.filters = filters;
         $scope.products = list_products;
@@ -35,9 +34,24 @@ app.controller('controller_shop', function ($scope, $rootScope, $route, filters,
     } else if (path[1] === 'product') {
         $scope.show_list_product = false;
         $scope.show_details = true;
+
         services_shop.details($route.current.params.token);
+        setTimeout(load_slider, 50); // con menos de 50 falla de vez en cuando
     }
 
+
+
+    function load_slider() {
+        new Glider(document.querySelector('.carousel__list'), {
+            slidesToShow: 1,
+            dots: '.carousel__indicator',
+            draggable: false,
+            arrows: {
+                prev: '.carousel__prev',
+                next: '.carousel__next'
+            }
+        });
+    }
 
     // let talla = [];
     // let color = [];

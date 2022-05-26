@@ -50,7 +50,7 @@
     </div>
 </div>
 
-<div ng-show="show_details" ng-repeat="product in products[0]">
+<div ng-show="show_details">
 
     <!-- <div id="div0" style="width: 50%; margin-left: 4%; margin-top: 50px" class="section">
         <section id="main-slider" class="section">
@@ -58,11 +58,6 @@
                 <ol id="ol" class="carousel-indicators" style="top: 450px;">
                     <li id="AAA" class="active" data-target="#main-slider" data-slide-to="0"></li>
                     <li id="AAA" data-target="#main-slider" data-slide-to="1"></li>
-                    <li id="AAA" data-target="#main-slider" data-slide-to="2"></li>
-                    <li id="AAA" data-target="#main-slider" data-slide-to="3"></li>
-                    <li id="AAA" data-target="#main-slider" data-slide-to="4"></li>
-                    <li id="AAA" data-target="#main-slider" data-slide-to="5"></li>
-                    <li id="AAA" data-target="#main-slider" data-slide-to="6"></li>
                 </ol>
                 <div id="div2" class="carousel-inner">
                     <div id="AAA" class="item active"
@@ -92,14 +87,36 @@
                 href="#main-slider" data-slide="next"><i class="fa fa-chevron-right"></i></a>
         </section>
     </div> -->
-    <div id="AAA" style="position: absolute; top: 20%; left: 60%; display: contents;">
+
+    <div class="carousel section" style="width: 50%; margin-left: 4%; margin-top: 50px">
+        <div class="carousel__container">
+            <button class="carousel__prev">
+                <i class='fa fa-chevron-left'></i>
+            </button>
+            <div class="carousel__list">
+                <div class="carousel__elements"  ng-repeat="product in products[1]">
+                    <img class='carousel__img' id='' src='frontend\views\images\cars\{{product.images}}'>
+                </div>
+            </div>
+            <button class="carousel__next">
+                <i class='fa fa-chevron-right'></i>
+            </button>
+        </div>
+        <div class="carousel__indicator"></div>
+    </div>
+
+    <div id="AAA" style="position: absolute; top: 20%; left: 60%; display: contents;"
+        ng-repeat="product in products[0]">
         <div style="position: absolute; top: 20%; left: 60%;">
             <h1 style="font-size: 48px;">{{product.brand}} {{product.model}}</h1>
             <h1 style="font-size: 24; color: rgb(177, 41, 0);">{{product.price}}€</h1>
-            <h1 style="font-size: 24;"><img src="http://localhost/Framework_PHP_OO_MVC/views/images/icons/car-door.png" style="max-height: 45px;"> {{product.doors}} |
-                <img src="http://localhost/Framework_PHP_OO_MVC/views/images/icons/seat.png" style="max-height: 45px;">{{product.capacity}}
+            <h1 style="font-size: 24;"><img src="http://localhost/Framework_PHP_OO_MVC/views/images/icons/car-door.png"
+                    style="max-height: 45px;"> {{product.doors}} |
+                <img src="http://localhost/Framework_PHP_OO_MVC/views/images/icons/seat.png"
+                    style="max-height: 45px;">{{product.capacity}}
             </h1>
-            <h1 style="font-size: 24;"><img src="http://localhost/Framework_PHP_OO_MVC/views/images/icons/fuel.png" style="max-height: 45px;"> {{product.type}}</h1>
+            <h1 style="font-size: 24;"><img src="http://localhost/Framework_PHP_OO_MVC/views/images/icons/fuel.png"
+                    style="max-height: 45px;"> {{product.type}}</h1>
             <h1 style="font-size: 24;">Estado: {{product.category}}</h1>
         </div>
     </div>
