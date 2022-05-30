@@ -17,8 +17,8 @@ app.controller('controller_shop', function ($scope, $window, $rootScope, $route,
         if (local.length > 3) {
             local = JSON.parse(local);
             services_shop.load_with_filters(local);
-        } 
-        
+        }
+
         else {
             $scope.products = list_products;
             // $scope.pagination(list_products);
@@ -42,6 +42,8 @@ app.controller('controller_shop', function ($scope, $window, $rootScope, $route,
             }
         });
     }
+
+    services_shop.addMap(list_products);
 
     $scope.save_filters = function (filters) {
         services_shop.save_filters(filters);

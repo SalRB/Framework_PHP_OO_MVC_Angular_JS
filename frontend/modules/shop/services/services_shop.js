@@ -1,5 +1,5 @@
 app.factory('services_shop', ['services', '$rootScope', function (services, $rootScope) {
-    let service = { details: details, load_api: load_api, load_with_filters: load_with_filters, pagination: pagination, change_page: change_page, add_favs: add_favs, save_filters: save_filters };
+    let service = { details: details, load_api: load_api, load_with_filters: load_with_filters, pagination: pagination, change_page: change_page, add_favs: add_favs, save_filters: save_filters, addMap: addMap };
     return service;
 
     function pagination(products, favs) {
@@ -136,6 +136,31 @@ app.factory('services_shop', ['services', '$rootScope', function (services, $roo
             }, function (error) {
                 console.log(error);
             });
+    }
+
+    function addMap(products) {
+        mapboxgl.accessToken = 'pk.eyJ1IjoicHVlc2JpZW4zMyIsImEiOiJjbDAxMzEyb3cwcWIzM2p0MWoyZmxlNTE1In0.sQ3TcqT8uywjfN41dlymqw';
+
+        map = new mapboxgl.Map({
+            container: 'map', // container ID
+            style: 'mapbox://styles/mapbox/streets-v11', // style URL
+            center: [-0.6000854943333472, 38.82222699462896], // starting position [lng, lat]
+            zoom: 9 // starting zoom
+        });
+
+        products.forEach(product => {
+            console.log(product);
+            const popup = new mapboxgl.Popup({ offset: 25 }).setHTML('<div class=' + product.ID + '" id="divpopup"><img src="http://localhost/Framework_PHP_OO_MVC_ANGUlAR_JS/frontend/views/images/cars/' + product.image + '">' +
+                '<h4>' + product.brand + ' ' + product.model + '</h4>' +
+                '<h4 style="color: rgb(177, 41, 0);">' + product.price + ' €</h4></div>');
+
+            const marker1 = new mapboxgl.Marker()
+                .setLngLat([product.lon, product.lat])
+                .setPopup(popup) // sets a popup on this markers
+                .addTo(map);
+        });
+
+
     }
 
 }]);

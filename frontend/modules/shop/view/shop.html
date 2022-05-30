@@ -16,14 +16,19 @@
 
 
 <div ng-show="show_list_product">
+    <div id="map"
+        style="margin-right: 2%; position: fixed; top: 50px; right: 1px; width: 422px; height: 700px; border-radius: 5px; margin-top: 133px;"
+        class="mapboxgl-map"></div>
+    <div class="mapboxgl-canary" style="visibility: hidden;"></div>
     <div style="margin-left: 3%; position: absolute; top: 233px;">
         <form>
             <div ng-repeat="(key, filters) in filters">
                 <h4>{{key | uppercase}}:</h4>
                 <div ng-repeat="filter in filters">
                     <input type="checkbox" id="{{key}}{{filter.brand}}{{filter.category}}{{filter.type}}"
-                         value={{filter.brand}} ng-model="filter.checked" ng-repeat="name in filter" >
-                    <label for="{{key}}{{filter.brand}}{{filter.category}}{{filter.type}}" ng-repeat="name in filter">{{name}}</label>
+                        value={{filter.brand}} ng-model="filter.checked" ng-repeat="name in filter">
+                    <label for="{{key}}{{filter.brand}}{{filter.category}}{{filter.type}}"
+                        ng-repeat="name in filter">{{name}}</label>
                 </div>
             </div>
             <button ng-click="save_filters(filters)">Apply</button>
