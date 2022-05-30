@@ -27,7 +27,7 @@ app.config(['$routeProvider', function ($routeProvider) {
                     return services.get('shop', 'AllCars');
                 }
             }
-        }).when("/product/:token", {
+        }).when("/product/:id", {
             templateUrl: "frontend/modules/shop/view/shop.html", 
             controller: "controller_shop",
             resolve: {

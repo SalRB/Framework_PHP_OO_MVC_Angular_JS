@@ -1,17 +1,6 @@
 app.factory('services_shop', ['services', '$rootScope', function (services, $rootScope) {
-    let service = { details: details, load_api: load_api, filter_search: filter_search, pagination: pagination, change_page: change_page, add_cart: add_cart, add_favs: add_favs };
+    let service = { details: details, load_api: load_api, load_with_filters: load_with_filters, pagination: pagination, change_page: change_page, add_favs: add_favs, save_filters: save_filters };
     return service;
-
-    function filter_search(filters) {
-        console.log(filters);
-        services.post('shop', 'list_filters_products', { filters: filters })
-            .then(function (response) {
-                $rootScope.list_products = response;
-                pagination(response);
-            }, function (error) {
-                console.log(error);
-            });
-    }
 
     function pagination(products, favs) {
         $rootScope.products = products;
@@ -21,7 +10,7 @@ app.factory('services_shop', ['services', '$rootScope', function (services, $roo
         for (i = 1; i <= $rootScope.total_page; i++) {
             $rootScope.pages.push(i);
         }
-        change_page($rootScope.page, favs);
+        // change_page($rootScope.page, favs);
     }
 
     function change_page(page, favs) {
@@ -84,8 +73,8 @@ app.factory('services_shop', ['services', '$rootScope', function (services, $roo
             });
     }
 
-    function add_cart(codigo_producto, user) {
-        services.post('shop', 'insert_cart', { id: codigo_producto, user: user })
+    function add_favs(codigo_producto, user) {
+        services.post('shop', 'click_like', { id: codigo_producto, user: user })
             .then(function (response) {
                 console.log(response);
             }, function (error) {
@@ -93,10 +82,57 @@ app.factory('services_shop', ['services', '$rootScope', function (services, $roo
             });
     }
 
-    function add_favs(codigo_producto, user) {
-        services.post('shop', 'click_like', { id: codigo_producto, user: user })
+    function save_filters(filters) {
+        let brand = [];
+        let type = [];
+        let category = [];
+        let params = [];
+
+        // angular.forEach(filters, function (value, key) {
+        // });
+
+        angular.forEach(filters.brand, function (value, key) {
+            if (filters.brand[key].checked) {
+                brand.push(filters.brand[key].brand);
+            }
+        });
+        if (brand.length != 0) {
+            params.push({ "brand": brand });
+        }
+        angular.forEach(filters.type, function (value, key) {
+            if (filters.type[key].checked) {
+                type.push(filters.type[key].type);
+            }
+        });
+        if (type.length != 0) {
+            params.push({ "type": type });
+        }
+        angular.forEach(filters.category, function (value, key) {
+            if (filters.category[key].checked) {
+                category.push(filters.category[key].category);
+            }
+        });
+        if (category.length != 0) {
+            params.push({ "category": category });
+        }
+
+        console.log(params);
+
+        if (params.length > 0) {
+            localStorage.setItem('filters', JSON.stringify(params));
+        } else {
+            localStorage.setItem('filters', '');
+        }
+
+    }
+
+    function load_with_filters(params) {
+        console.log(params);
+        services.post('shop', 'Filters', { params })
             .then(function (response) {
                 console.log(response);
+                $rootScope.products = response;
+                // pagination(response);
             }, function (error) {
                 console.log(error);
             });

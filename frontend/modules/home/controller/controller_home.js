@@ -8,7 +8,7 @@ app.controller('controller_home', function($scope, $window, brands, categories, 
 
     setTimeout(load_slider, 50); // con menos de 50 falla de vez en cuando
 
-    
+
 
     function load_slider() {
         new Glider(document.querySelector('.carousel__list'), {

@@ -1,16 +1,4 @@
-
-// app.controller('controller_shop', function($scope, $rootScope, $route, filters, list_products, services_shop) {
 app.controller('controller_shop', function ($scope, $window, $rootScope, $route, filters, list_products, services_shop) {
-
-    // console.log(list_products);
-    // $scope.filters = filters;
-    // $scope.products = list_products;
-
-
-    // $scope.show_list_product = true;
-    // $scope.show_details = false;
-    // services_shop.details($route.current.params.token);
-
 
     $scope.load_details = function () {
         location.href = "#/product/" + this.product.ID;
@@ -20,26 +8,28 @@ app.controller('controller_shop', function ($scope, $window, $rootScope, $route,
 
     if (path[1] === 'shop') {
         $scope.filters = filters;
-        $scope.products = list_products;
         $scope.show_list_product = true;
         $scope.show_details = false;
 
-        // if(localStorage.filters){
-        //     var local = JSON.parse(localStorage.filters);
-        //     localStorage.removeItem('filters');
-        //     services_shop.filter_search(local);
-        // }else{
-        //     $scope.pagination(list_products);
-        // }
+        var local = localStorage.getItem('filters');
+        // console.log(local.length);
+
+        if (local.length > 3) {
+            local = JSON.parse(local);
+            services_shop.load_with_filters(local);
+        } 
+        
+        else {
+            $scope.products = list_products;
+            // $scope.pagination(list_products);
+        }
     } else if (path[1] === 'product') {
         $scope.show_list_product = false;
         $scope.show_details = true;
 
-        services_shop.details($route.current.params.token);
+        services_shop.details($route.current.params.id);
         setTimeout(load_slider, 50); // con menos de 50 falla de vez en cuando
     }
-
-
 
     function load_slider() {
         new Glider(document.querySelector('.carousel__list'), {
@@ -53,52 +43,15 @@ app.controller('controller_shop', function ($scope, $window, $rootScope, $route,
         });
     }
 
-    // let talla = [];
-    // let color = [];
-    // let categoria = [];    
+    $scope.save_filters = function (filters) {
+        services_shop.save_filters(filters);
+        location.reload();
+    };
 
-    // $scope.filter_products = function(value, key) {
-    //     var fliter_type = [];
-
-    //     if(key == "talla"){
-    //         if(!talla.includes(value)){
-    //             talla.push(value);
-    //         }else{
-    //             i = talla.indexOf(value);
-    //             talla.splice( i, 1 );
-    //         }
-    //     }else if(key == "color"){
-    //         if(!color.includes(value)){
-    //             color.push(value);
-    //         }else{
-    //             i = color.indexOf(value);
-    //             color.splice( i, 1 );
-    //         }
-    //     }else if(key == "categoria"){
-    //         if(!categoria.includes(value)){
-    //             categoria.push(value);
-    //         }else{
-    //             i = categoria.indexOf(value);
-    //             categoria.splice( i, 1 );
-    //         }
-    //     }
-
-    //     if(talla.length != 0){
-    //         fliter_type.push({key : 'talla', value : talla});
-    //     }
-    //     if(color.length != 0){
-    //         fliter_type.push({key : 'color', value : color});
-    //     }
-    //     if(categoria.length != 0){
-    //         fliter_type.push({key : 'categoria', value : categoria});
-    //     }
-
-    //     if(fliter_type.length == 0){
-    //         $scope.pagination(list_products);
-    //     }else{
-    //         services_shop.filter_search(fliter_type);
-    //     }
-    // }
+    $scope.delete_filters = function () {
+        localStorage.setItem('filters', '');
+        location.reload();
+    };
 
     // $scope.pagination = function(products) {
     //     services_shop.pagination(products);

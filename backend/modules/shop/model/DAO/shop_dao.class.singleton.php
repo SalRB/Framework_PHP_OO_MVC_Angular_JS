@@ -141,6 +141,8 @@ class shop_dao
             $sql .= " LIMIT 0, 3";
         }
 
+        // return $sql;
+        // exit;
 
         $stmt = $db->ejecutar($sql);
         return $db->listar($stmt);

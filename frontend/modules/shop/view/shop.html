@@ -20,14 +20,14 @@
         <form>
             <div ng-repeat="(key, filters) in filters">
                 <h4>{{key | uppercase}}:</h4>
-
                 <div ng-repeat="filter in filters">
-                    <input type="checkbox" id="{{key}}{{filter.brand}}">
-                    <label for="{{key}}{{filter.brand}}" ng-repeat="name in filter">{{name}}</label>
+                    <input type="checkbox" id="{{key}}{{filter.brand}}{{filter.category}}{{filter.type}}"
+                         value={{filter.brand}} ng-model="filter.checked" ng-repeat="name in filter" >
+                    <label for="{{key}}{{filter.brand}}{{filter.category}}{{filter.type}}" ng-repeat="name in filter">{{name}}</label>
                 </div>
-
-
             </div>
+            <button ng-click="save_filters(filters)">Apply</button>
+            <button ng-click="delete_filters()">Reset</button>
         </form>
     </div>
 
@@ -94,7 +94,7 @@
                 <i class='fa fa-chevron-left'></i>
             </button>
             <div class="carousel__list">
-                <div class="carousel__elements"  ng-repeat="product in products[1]">
+                <div class="carousel__elements" ng-repeat="product in products[1]">
                     <img class='carousel__img' id='' src='frontend\views\images\cars\{{product.images}}'>
                 </div>
             </div>
