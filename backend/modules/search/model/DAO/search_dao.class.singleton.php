@@ -33,8 +33,8 @@ class search_dao
     {
         $sql = "SELECT DISTINCT brand FROM carsv3";
 
-        if (!empty($filters[0]['filters'][0]['category'])) {
-            $category = $filters[0]['filters'][0]['category'][0];
+        if (!empty($filters[0]['category'])) {
+            $category = $filters[0]['category'];
             $sql .= " WHERE category = '$category'";
         }
         $stmt = $db->ejecutar($sql);
@@ -46,8 +46,8 @@ class search_dao
         $sql = "SELECT DISTINCT city FROM carsv3 ";
 
         $count = 0;
-        if (strlen($filters[0]['filters'][0]['category'][0]) > 1) {
-            $category = $filters[0]['filters'][0]['category'][0];
+        if (strlen($filters[0]['filters'][0]['category']) > 1) {
+            $category = $filters[0]['filters'][0]['category'];
             if ($count == 0) {
                 $sql .= " WHERE ";
                 $count++;
@@ -55,8 +55,8 @@ class search_dao
             $sql .= "category = '$category' ";
         }
 
-        if (strlen($filters[0]['filters'][1]['brand'][0]) > 1) {
-            $brand = $filters[0]['filters'][1]['brand'][0];
+        if (strlen($filters[0]['filters'][1]['brand']) > 1) {
+            $brand = $filters[0]['filters'][1]['brand'];
             if ($count == 0) {
                 $sql .= " WHERE ";
                 $sql .= "brand = '$brand' ";
@@ -65,7 +65,7 @@ class search_dao
                 $sql .= " AND brand = '$brand' ";
             }
         }
-        $city = $filters[0]['filters'][2]['city'][0];
+        $city = $filters[0]['filters'][2]['city'];
 
         if ($count == 0) {
             $sql .= " WHERE city LIKE '%$city%'";

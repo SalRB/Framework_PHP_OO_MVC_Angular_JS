@@ -49,6 +49,7 @@ class shop_dao
 
     public function select_list_products_with_filters($db, $filters)
     {
+
         $count = 0;
         $count2 = 0;
         $count3 = 0;

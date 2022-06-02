@@ -4,6 +4,7 @@ app.controller('controller_shop', function ($scope, $window, $rootScope, $route,
         location.href = "#/product/" + this.product.ID;
     };
 
+
     let path = $route.current.originalPath.split('/');
 
     if (path[1] === 'shop') {
@@ -21,6 +22,8 @@ app.controller('controller_shop', function ($scope, $window, $rootScope, $route,
 
         else {
             $scope.products = list_products;
+            services_shop.addMap(list_products);
+
             // $scope.pagination(list_products);
         }
     } else if (path[1] === 'product') {
@@ -43,7 +46,6 @@ app.controller('controller_shop', function ($scope, $window, $rootScope, $route,
         });
     }
 
-    services_shop.addMap(list_products);
 
     $scope.save_filters = function (filters) {
         services_shop.save_filters(filters);

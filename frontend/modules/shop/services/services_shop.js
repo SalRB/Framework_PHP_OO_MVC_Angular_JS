@@ -131,6 +131,7 @@ app.factory('services_shop', ['services', '$rootScope', function (services, $roo
         services.post('shop', 'Filters', { params })
             .then(function (response) {
                 console.log(response);
+                addMap(response);
                 $rootScope.products = response;
                 // pagination(response);
             }, function (error) {

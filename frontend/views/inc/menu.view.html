@@ -1,55 +1,39 @@
 <div class="top-bar">
+
     <div class="container">
-        <div class="row">
-            <div class="col-sm-6 col-xs-12">
-                <div class="top-number">
-                    <p><i class="fa fa-phone-square"></i> Buenas Tardes</p>
-                </div>
-            </div>
-            <!-- <div class="col-sm-6 col-xs-12">	
-                <div id="slide-lang">
-                    <ul style="list-style : none; margin: 0; padding: 0; margin-top: 2px;">
-                        <li><button class="lang-btn" data-tr="Valencian" id="btn-val"></buttton></li>
-                        <li><button class="lang-btn" data-tr="Spanish" id="btn-es"></button></li>
-                        <li><button class="lang-btn" data-tr="English" id="btn-en"></button></li>
-                        <li><button class="lang-btn" data-tr="Standard Galactic Alphabet" id="btn-aa"></button></li>
-                    </ul>
-                </div>
-            </div> -->
-            <!-- <div class="col-sm-6 col-xs-12">	
-                <div id="slide-lang">
-                    <select style="color: white; background-color: #6F6F6F;">
-                        <option class="lang-btn" data-tr="Spanish" id="btn-es"></option>
-                        <option class="lang-btn" data-tr="English" id="btn-en"></option>
-                        <option class="lang-btn" data-tr="Valencian" id="btn-val"></option>
-                        <option class="lang-btn" data-tr="Standard Galactic Alphabet" id="btn-aa"></option>
-                    </ul>
-                </div>
-            </div> -->
-            <div class="col-sm-6 col-xs-12">
-                <div class="social">
-                    <!-- <ul class="social-share">
-                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                        <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
-                        <li><a href="#"><i class="fa fa-skype"></i></a></li>
-                    </ul> -->
-                    <div class="search">
-                        <div id="search"></div>
-                        <!-- <form role="form">
-                            <input type="text" class="search-form" autocomplete="off" placeholder="Search">
-                            <i class="fa fa-search"></i>
-                        </form> -->
+        <div class="col-sm-6 col-xs-12">
+            <div class="social">
+                <div class="search">
+                    <div id="search">
+                        <div id="divSearch" class="">
+                            <select id="category" name="category" ng-model="selected_category"
+                                ng-change="change_brand(selected_category)">
+                                <option value="none" selected="selected" disabled="disabled" hidden="hidden">Category
+                                </option>
+                                <option ng-repeat="category in categories" value="{{category.category}}">
+                                    {{category.category}}</option>
+                            </select>
+                            <select id="brand" name="brand" ng-model="selected_brand">
+                                <option value="none" selected="selected" disabled="disabled" hidden="hidden">Brand
+                                </option>
+                                <option ng-repeat="brand in brands" value="{{brand.brand}}">{{brand.brand}}</option>
+                            </select>
+                            <input id="city" type="text" autocomplete="off" ng-model="city"
+                                ng-change="change_cities(selected_category, selected_brand, city)">
+                            <div id="divcity">
+                                <div class="option" id="Olleria" ng-repeat="city in cities">{{city.city}}</div>
+                            </div>
+                            <i id="searchButton" class="fa fa-search"
+                                style="position: absolute; bottom: 10px; margin-left: 10px;" ng-click="search(selected_category, selected_brand, city)"></i>
+                        </div>
                     </div>
-                    <div class="login">
-                        <div id="login"></div>
-                    </div>
+                </div>
+                <div class="login">
+                    <div id="login"></div>
                 </div>
             </div>
         </div>
     </div>
-    <!--/.container-->
 </div>
 
 <nav class="navbar navbar-inverse" role="banner">
