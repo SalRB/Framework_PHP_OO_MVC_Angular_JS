@@ -20,7 +20,7 @@
             </button>
             <div class="carousel__list">
                 <div class="carousel__elements" ng-repeat="brand in brands">
-                    <img class='carousel__img' id='' src='frontend\views\images\home\{{brand.brand_image}}'>
+                    <img class='carousel__img' ng-click="redirect_shop('brand', brand.brand_name)" id='' src='frontend\views\images\home\{{brand.brand_image}}'>
                 </div>
             </div>
             <button class="carousel__next">

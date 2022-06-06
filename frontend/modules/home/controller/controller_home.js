@@ -5,10 +5,7 @@ app.controller('controller_home', function($scope, $window, brands, categories, 
     $scope.types = types;
     $scope.brands = brands;
 
-
     setTimeout(load_slider, 50); // con menos de 50 falla de vez en cuando
-
-
 
     function load_slider() {
         new Glider(document.querySelector('.carousel__list'), {
@@ -22,7 +19,35 @@ app.controller('controller_home', function($scope, $window, brands, categories, 
         });
     }
 
+    $scope.redirect_shop = function (filter_type, filter) {
+        
+        let brand = [];
+        let type = [];
+        let category = [];
+        let filters = [];
 
+        
+        switch (filter_type) {
+            case 'brand':
+                brand.push(filter);
+                filters.push({ "brand": brand });
+                break;
+            case 'category':
+                category.push(filter);
+                filters.push({ "category": category });
+                break;
+            case 'type':
+                type.push(filter);
+                filters.push({ "type": type });
+                break;
+            default:
+                break;
+        }
+
+        localStorage.setItem('filters', JSON.stringify(filters));
+
+        location.href = "#/shop"
+    }
 
 })
     

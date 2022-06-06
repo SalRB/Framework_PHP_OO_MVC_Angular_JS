@@ -57,13 +57,7 @@ app.controller('controller_shop', function ($scope, $window, $rootScope, $route,
         location.reload();
     };
 
-    // $scope.pagination = function(products) {
-    //     services_shop.pagination(products);
-    // }
 
-    // $scope.change_page = function(page) {
-    //     services_shop.change_page(page); 
-    // }
 
 
     // $scope.add_cart = function(codigo_producto) {

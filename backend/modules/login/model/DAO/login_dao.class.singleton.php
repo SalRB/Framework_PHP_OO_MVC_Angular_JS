@@ -32,13 +32,16 @@ class login_dao
     public function select_user_social($db, $UUID)
     {
         $sql = "SELECT `UUID`, `username`, `email`, `passwd`, `type`, `avatar`, `token_email`, `active` FROM `users` WHERE UUID='$UUID'";
+
         $stmt = $db->ejecutar($sql);
+
         return $db->listar($stmt);
     }
 
     public function select_social_login($db, $id)
     {
         $sql = "SELECT * FROM `users` WHERE id='$id'";
+     
         $stmt = $db->ejecutar($sql);
         return $db->listar($stmt);
     }
@@ -47,6 +50,7 @@ class login_dao
     {
         $sql = "INSERT INTO `users`(`username`, `email`, `type`, `avatar`, `UUID`)     
                 VALUES ('$username','$email','client', '$avatar', '$UUID')";
+
         return $stmt = $db->ejecutar($sql);
     }
 

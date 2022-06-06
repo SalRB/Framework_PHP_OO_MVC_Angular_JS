@@ -37,24 +37,24 @@ app.config(['$routeProvider', function ($routeProvider) {
         }).when("/contact", {
             templateUrl: "frontend/modules/contact/view/contact.html",
             controller: "controller_contact"
-            // }).when("/login", {
-            //     templateUrl: "frontend/modules/login/view/login.html", 
-            //     controller: "controller_login"
-            // }).when("/logout", {
-            //     templateUrl: "frontend/modules/login/view/login.html", 
-            //     controller: "controller_login"
-            // }).when("/register", {
-            //     templateUrl: "frontend/modules/login/view/login.html", 
-            //     controller: "controller_login"
-            // }).when("/verify/:token", {
-            //     templateUrl: "frontend/modules/login/view/login.html", 
-            //     controller: "controller_login"
-            // }).when("/recover", {
-            //     templateUrl: "frontend/modules/login/view/login.html", 
-            //     controller: "controller_login"
-            // }).when("/recover/:token", {
-            //     templateUrl: "frontend/modules/login/view/login.html", 
-            //     controller: "controller_login"
+        }).when("/login", {
+            templateUrl: "frontend/modules/login/view/login.html",
+            controller: "controller_login"
+        }).when("/logout", {
+            templateUrl: "frontend/modules/login/view/login.html",
+            controller: "controller_login"
+        }).when("/register", {
+            templateUrl: "frontend/modules/login/view/login.html",
+            controller: "controller_login"
+        }).when("/verify/:token", {
+            templateUrl: "frontend/modules/login/view/login.html",
+            controller: "controller_login"
+        }).when("/recover", {
+            templateUrl: "frontend/modules/login/view/login.html",
+            controller: "controller_login"
+        }).when("/recover/:token", {
+            templateUrl: "frontend/modules/login/view/login.html",
+            controller: "controller_login"
             // }).when("/cart", {
             //     templateUrl: "frontend/modules/cart/view/cart.html", 
             //     controller: "controller_cart",

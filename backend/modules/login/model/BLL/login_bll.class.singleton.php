@@ -47,10 +47,12 @@ class login_bll
 
 		$username = "manual-" . $args[0];
 		$user = $this->dao->select_user($this->db, $username);
-		if (password_verify($args[1], $user[0]['passwd'])) {
-			$jwt = jwt_process::encode($user[0]['username']);
-			// $this->dao->update_token_jwt($this->db, $jwt, $user[0]['email']);
-			return json_encode($jwt);
+        if (!empty($user)) {
+			if (password_verify($args[1], $user[0]['passwd'])) {
+				$jwt = jwt_process::encode($user[0]['username']);
+				// $this->dao->update_token_jwt($this->db, $jwt, $user[0]['email']);
+				return json_encode($jwt);
+			}
 		}
 		return "error";
 	}
