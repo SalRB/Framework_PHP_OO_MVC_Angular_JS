@@ -36,6 +36,17 @@ class login_bll
 		if (!$select) {
 			return 'error';
 			exit;
+		} else {
+			$token = '"' . $token . '"';
+			$message = [
+				'type' => 'validate',
+				'token' => $token,
+				'toEmail' => $args['email']
+			];
+			$email = json_decode(mail::send_email($message), true);
+			if (!empty($email)) {
+				return 'enviado';
+			}
 		}
 
 		return $token;
@@ -47,10 +58,13 @@ class login_bll
 
 		$username = "manual-" . $args[0];
 		$user = $this->dao->select_user($this->db, $username);
-        if (!empty($user)) {
+		if (!empty($user)) {
 			if (password_verify($args[1], $user[0]['passwd'])) {
 				$jwt = jwt_process::encode($user[0]['username']);
-				// $this->dao->update_token_jwt($this->db, $jwt, $user[0]['email']);
+
+				$_SESSION['username'] = $user[0]['username'];
+				$_SESSION['tiempo'] = time();
+
 				return json_encode($jwt);
 			}
 		}
@@ -62,11 +76,18 @@ class login_bll
 		$user = $this->dao->select_user_social($this->db, $args[3]);
 
 		if (!$user) {
-			$user = $this->dao->insert_social_login($this->db, $args[0], $args[1], $args[2], $args[3]);
+			$this->dao->insert_social_login($this->db, $args[0], $args[1], $args[2], $args[3]);
 			$jwt = jwt_process::encode($args[0]);
+
+			$_SESSION['username'] = $user[0]['username'];
+			$_SESSION['tiempo'] = time();
+
 			return json_encode($jwt);
 			exit;
 		}
+
+		$_SESSION['username'] = $user[0]['username'];
+		$_SESSION['tiempo'] = time();
 
 		$jwt = jwt_process::encode($user[0]['username']);
 		return json_encode($jwt);
@@ -87,6 +108,19 @@ class login_bll
 		$token = common::generate_Token_secure(20);
 		if (!empty($user)) {
 			$this->dao->update_recover_password($this->db, $args, $token);
+
+			$message = [
+				'type' => 'recover',
+				'token' => $token,
+				'toEmail' => $args
+			];
+			$email = json_decode(mail::send_email($message), true);
+
+			if (!empty($email)) {
+				return 'done';
+			}
+
+
 			return $token;
 		}
 		return "fail";
@@ -102,8 +136,6 @@ class login_bll
 
 	public function get_new_password_BLL($args)
 	{
-		// return $args[1];
-		// exit;
 		$hashed_pass = password_hash($args[1], PASSWORD_DEFAULT, ['cost' => 12]);
 		if ($this->dao->update_new_passwoord($this->db, $args[0], $hashed_pass)) {
 			return 'new_password';
@@ -114,5 +146,58 @@ class login_bll
 	public function get_data_user_BLL($args)
 	{
 		return $this->dao->select_data_user($this->db, $args);
+	}
+
+	public function get_logout_BLL()
+	{
+		unset($_SESSION['tiempo']);
+		unset($_SESSION['username']);
+		session_destroy();
+		return 'Done';
+	}
+
+	// Activity
+
+	public function get_control_user_BLL($args)
+	{
+		$jwt = jwt_process::decode($args);
+		$jwt = json_decode($jwt, TRUE);
+
+		if ($jwt['name'] == $_SESSION['username']) {
+			$_SESSION['tiempo'] = time();
+			return 'valid';
+		} else {
+			return 'invalid_user';
+		}
+	}
+
+	public function get_actividad_BLL()
+	{
+		if (!isset($_SESSION["tiempo"])) {
+			echo "inactivo";
+		} else {
+			if ((time() - $_SESSION["tiempo"]) >= 1800) { // Media hora
+				echo "inactivo";
+				exit();
+			} else {
+				echo "activo";
+				exit();
+			}
+		}
+	}
+
+	public function get_refresh_token_BLL($args)
+	{
+		$jwt = jwt_process::decode($args);
+		$jwt = json_decode($jwt, TRUE);
+
+		$token = jwt_process::encode($jwt['name']);
+		return $token;
+	}
+
+	public function get_refresh_cookie_BLL()
+	{
+		session_regenerate_id();
+		return "Done";
 	}
 }

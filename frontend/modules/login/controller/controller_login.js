@@ -15,8 +15,11 @@ app.controller('controller_login', function ($scope, $route, $rootScope, service
         services_login.login($scope.username, $scope.password);
     }
 
+    $scope.register = function () {
+        services_login.register($scope.username_r, $scope.password_r, $scope.email_r);
+    }
+
     $scope.social_login = function (method) {
-        // console.log(method);
         services_social_login.social_login(method);
     };
 
@@ -41,25 +44,25 @@ app.controller('controller_login', function ($scope, $route, $rootScope, service
     //     }
     // }
 
-    // let path = $route.current.originalPath.split('/');
-    // if (path[1] === 'login') {
-    //     $scope.show_login = true;
-    //     $scope.show_register, $scope.show_recover_password, $scope.show_new_password = false;
-    // } else if (path[1] === 'logout') {
-    //     services_login.logout();
-    // } else if (path[1] === 'register') {
-    //     $scope.show_register = true;
-    //     $scope.show_login, $scope.show_recover_password, $scope.show_new_password = false;
-    // } else if (path[1] === 'verify') {
-    //     services_login.verify_email($route.current.params.token);
-    // } else if (path[1] === 'recover') {
-    //     if ($route.current.params.token) {
-    //         $scope.show_new_password = true;
-    //         $scope.show_register, $scope.show_login, $scope.show_recover_password = false;
-    //     } else {
-    //         $scope.show_recover_password = true;
-    //         $scope.show_register, $scope.show_login, $scope.show_new_password = false;
-    //     }
-    // }
+    let path = $route.current.originalPath.split('/');
+    if (path[1] === 'login') {
+        $scope.show_login = true;
+        $scope.show_register, $scope.show_recover_password, $scope.show_new_password = false;
+    } else if (path[1] === 'logout') {
+        services_login.logout();
+    } else if (path[1] === 'register') {
+        $scope.show_register = true;
+        $scope.show_login, $scope.show_recover_password, $scope.show_new_password = false;
+    } else if (path[1] === 'verify') {
+        services_login.verify_email($route.current.params.token);
+    } else if (path[1] === 'recover') {
+        if ($route.current.params.token) {
+            $scope.show_new_password = true;
+            $scope.show_register, $scope.show_login, $scope.show_recover_password = false;
+        } else {
+            $scope.show_recover_password = true;
+            $scope.show_register, $scope.show_login, $scope.show_new_password = false;
+        }
+    }
 
 });

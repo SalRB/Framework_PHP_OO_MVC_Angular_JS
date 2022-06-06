@@ -25,17 +25,26 @@ app.factory('services_login', ['services', 'services_localstorage', '$rootScope'
     }
 
     function logout() {
-        services_localstorage.clearSession();
-        location.href = "#/home/";
-        window.location.reload();
+        services.post('login', 'logout')
+            .then(function (result) {
+                services_localstorage.clearSession();
+                location.href = "#/home/";
+                window.location.reload();
+            }, function (error) {
+                console.log(error);
+            });
+
     }
 
     function register(username, email, password) {
-        services.post('login', 'register', { username: username, email: email, password: password })
-            .then(function (response) {
-                $rootScope.token = response;
-                location.href = "#/login";
-                return;
+        services.post('login', 'register', { username: username, password: password, email: email })
+            .then(function (result) {
+                console.log(result);
+                if (result == 'error') {
+                    toastr.error('Username or email already in use');
+                } else {
+                    toastr.success('Verification email sended');
+                }
             }, function (error) {
                 console.log(error);
             });
