@@ -3,7 +3,6 @@ app.factory('services_login', ['services', 'services_localstorage', '$rootScope'
     return service;
 
     function login(username, password) {
-        // console.log(username, password);
         services.post('login', 'login', { username: username, password: password })
             .then(function (result) {
                 token = result.split('"');
@@ -33,13 +32,11 @@ app.factory('services_login', ['services', 'services_localstorage', '$rootScope'
             }, function (error) {
                 console.log(error);
             });
-
     }
 
     function register(username, email, password) {
         services.post('login', 'register', { username: username, password: password, email: email })
             .then(function (result) {
-                console.log(result);
                 if (result == 'error') {
                     toastr.error('Username or email already in use');
                 } else {

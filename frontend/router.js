@@ -82,6 +82,15 @@ app.config(['$routeProvider', function ($routeProvider) {
 
 app.run(function ($rootScope, services, services_search) {
 
+    if(localStorage.token){
+        $rootScope.show_login = false;
+        $rootScope.show_logout = true;
+    }else{
+        $rootScope.show_login = true;
+        $rootScope.show_logout = false;
+    }
+    
+
     services_search.search_category();
     services_search.search_brand();
 

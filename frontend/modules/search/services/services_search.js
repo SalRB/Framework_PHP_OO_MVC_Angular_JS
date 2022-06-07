@@ -14,7 +14,6 @@ app.factory('services_search', ['services', '$rootScope', function (services, $r
     function search_brand(category = undefined) {
         services.post('search', 'BrandsSearch', { category })
             .then(function (response) {
-                console.log(response);
                 $rootScope.brands = response;
             }, function (error) {
                 console.log(error);

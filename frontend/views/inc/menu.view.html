@@ -60,11 +60,8 @@
                     <a href="#contact" class="menu-btn" id="contact" data-tr="Contact">Contact</a>
                 </li>
                 <li class="login-button">
-                    <a href="#login" class="menu-btn" id="login" data-tr="Log in">Log in</a>
-                </li>
-                <!-- ng-if="menu == false" -->
-                <li class="logout-button">
-                    <a href="#logout" ng-if="menu == true" class="menu-btn" id="logout" data-tr="Log out">Log out</a>
+                    <a href="#login" ng-show="show_login" class="menu-btn" id="login" data-tr="Log in">Log in</a>
+                    <a href="#logout" ng-show="show_logout" class="menu-btn" id="logout" data-tr="Log out">Log out</a>
                 </li>
 
                 <li class="dropdown">

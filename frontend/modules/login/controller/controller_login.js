@@ -45,13 +45,10 @@ app.controller('controller_login', function ($scope, $route, $rootScope, service
     // }
 
     let path = $route.current.originalPath.split('/');
-    if (path[1] === 'login') {
-        $scope.show_login = true;
-        $scope.show_register, $scope.show_recover_password, $scope.show_new_password = false;
-    } else if (path[1] === 'logout') {
+    if (path[1] === 'logout') {
         services_login.logout();
-    } else if (path[1] === 'register') {
-        $scope.show_register = true;
+    } else if (path[1] === 'login') {
+        $scope.register_login = true;
         $scope.show_login, $scope.show_recover_password, $scope.show_new_password = false;
     } else if (path[1] === 'verify') {
         services_login.verify_email($route.current.params.token);
