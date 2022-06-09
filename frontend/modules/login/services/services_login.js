@@ -1,5 +1,5 @@
 app.factory('services_login', ['services', 'services_localstorage', '$rootScope', 'toastr', function (services, services_localstorage, $rootScope, toastr) {
-    let service = { login: login, logout: logout, register: register, verify_email: verify_email, recover_password: recover_password, new_password: new_password };
+    let service = { login: login, logout: logout, register: register, verify_email: verify_email, send_recover_email: send_recover_email, new_password: new_password };
     return service;
 
     function login(username, password) {
@@ -34,7 +34,7 @@ app.factory('services_login', ['services', 'services_localstorage', '$rootScope'
             });
     }
 
-    function register(username, email, password) {
+    function register(username, password, email) {
         services.post('login', 'register', { username: username, password: password, email: email })
             .then(function (result) {
                 if (result == 'error') {
@@ -48,6 +48,7 @@ app.factory('services_login', ['services', 'services_localstorage', '$rootScope'
     }
 
     function verify_email(token) {
+        console.log(token);
         services.post('login', 'verify_email', { token: token })
             .then(function (response) {
                 $rootScope.token = response;
@@ -58,11 +59,18 @@ app.factory('services_login', ['services', 'services_localstorage', '$rootScope'
             });
     }
 
-    function recover_password(email) {
+    function send_recover_email(email) {
+        console.log(email);
         services.post('login', 'send_recover_email', { email: email })
             .then(function (response) {
-                $rootScope.token = response;
-                location.href = "#/login ";
+                console.log(response);
+
+                if (response == '"fail"') {
+                    toastr.error('Unknown email');
+                } else {
+                    toastr.success('Recover email sended');
+                    setTimeout(' window.location.href =  "#/login"', 1000);
+                }
                 return;
             }, function (error) {
                 console.log(error);
@@ -70,6 +78,8 @@ app.factory('services_login', ['services', 'services_localstorage', '$rootScope'
     }
 
     function new_password(token, password) {
+        console.log(token, password);
+
         services.post('login', 'new_password', { token: token, password: password })
             .then(function (response) {
                 $rootScope.token = response;

@@ -57,45 +57,16 @@ app.controller('controller_shop', function ($scope, $window, $rootScope, $route,
         location.reload();
     };
 
-
-
-
-    // $scope.add_cart = function(codigo_producto) {
-    //     if(localStorage.token){
-    //         services_shop.add_cart(codigo_producto, localStorage.token);
-    //     }else{
-    //         location.href = "#/login";
-    //     }
-    // }
-
-    // $scope.add_favs = function() {
-    //     if(localStorage.token){
+    // $scope.add_favs = function () {
+    //     if (localStorage.token) {
     //         services_shop.add_favs(this.product.codigo_producto, localStorage.token);
-    //         if(this.product.favs_class == "bxs-heart"){
+    //         if (this.product.favs_class == "bxs-heart") {
     //             this.product.favs_class = "bx-heart";
-    //         }else{
+    //         } else {
     //             this.product.favs_class = "bxs-heart";
     //         }
-    //     }else{
+    //     } else {
     //         location.href = "#/login";
     //     }
-    // }
-
-    // let path = $route.current.originalPath.split('/');
-    // if(path[1] === 'shop'){
-    //     $scope.filters = filters;
-    //     $scope.show_list_product = true;
-    //     $scope.show_details = false;
-    //     if(localStorage.filters){
-    //         var local = JSON.parse(localStorage.filters);
-    //         localStorage.removeItem('filters');
-    //         services_shop.filter_search(local);
-    //     }else{
-    //         $scope.pagination(list_products);
-    //     }
-    // }else if(path[1] === 'product'){
-    //     $scope.show_list_product = false;
-    //     $scope.show_details = true;
-    //     services_shop.details($route.current.params.token);
     // }
 });

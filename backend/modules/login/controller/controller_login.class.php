@@ -38,7 +38,7 @@ class controller_login
 
     function new_password()
     {
-        echo json_encode(common::load_model('login_model', 'get_new_password', [$_POST['data']['token'], $_POST['data']['password']]));
+        echo json_encode(common::load_model('login_model', 'get_new_password', [$_POST['token'], $_POST['password']]));
     }
 
     function logout()

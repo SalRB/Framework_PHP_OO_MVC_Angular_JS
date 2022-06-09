@@ -15,14 +15,14 @@ class mail
                 $email['fromEmail'] = 'salroiba03@gmail.com';
                 $email['inputEmail'] = 'salroiba03@gmail.com';
                 $email['inputMatter'] = 'Email verification';
-                $email['inputMessage'] = "<h2>Email verification.</h2><a href = 'http://localhost/Framework_PHP_OO_MVC/login/view/verify/$email[token]'>Click here for verify your email.</a>";
+                $email['inputMessage'] = "<h2>Email verification.</h2><a href = 'http://localhost/Framework_PHP_OO_MVC_ANGULAR_JS/#/verify/$email[token]'>Click here for verify your email.</a>";
                 break;
             case 'recover';
                 $email['toEmail'] = 'salroiba03@gmail.com';
                 $email['fromEmail'] = 'salroiba03@gmail.com';
                 $email['inputEmail'] = 'salroiba03@gmail.com';
                 $email['inputMatter'] = 'Recover password';
-                $email['inputMessage'] = "<a href = 'http://localhost/Framework_PHP_OO_MVC/login/view/recover/$email[token]'>Click here for recover your password.</a>";
+                $email['inputMessage'] = "<a href = 'http://localhost/Framework_PHP_OO_MVC_ANGULAR_JS/#/recover/$email[token]'>Click here for recover your password.</a>";
                 break;
         }
         return self::send_mailgun($email);

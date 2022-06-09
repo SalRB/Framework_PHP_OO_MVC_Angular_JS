@@ -3,14 +3,6 @@ app.controller('controller_login', function ($scope, $route, $rootScope, service
     $scope.regex_email = /^[a-zA-Z0-9_\.\-]+@[a-zA-Z0-9\-]+\.[a-zA-Z0-9\-\.]+$/;
     $scope.regex_password = /^[A-Za-z0-9._-]{5,20}$/;
 
-    // if (!$rootScope.ini_social_login) {
-    //     $rootScope.ini_social_login = 0;
-    // }
-    // if ($rootScope.ini_social_login == 0) {
-    //     services_social_login.initialize();
-    //     $rootScope.ini_social_login = 1;
-    // }
-
     $scope.login = function () {
         services_login.login($scope.username, $scope.password);
     }
@@ -27,38 +19,29 @@ app.controller('controller_login', function ($scope, $route, $rootScope, service
         services_social_login.github();
     };
 
-    // $scope.register = function () {
-    //     services_login.register($scope.register_username, $scope.register_email, $scope.register_password);
-    // }
-
-    // $scope.recover_password = function () {
-    //     if ($scope.email != undefined) {
-    //         services_login.recover_password($scope.email);
-    //     }
-    // }
-
-    // $scope.new_password = function () {
-    //     if ($scope.password != undefined) {
-    //         console.log($scope.password);
-    //         services_login.new_password($route.current.params.token, $scope.password);
-    //     }
-    // }
+    $scope.send_email_recover = function () {
+        services_login.send_recover_email($scope.email_recover);
+    }
+    
+    $scope.recover_password = function () {
+        services_login.new_password($route.current.params.token, $scope.new_password);
+    }
 
     let path = $route.current.originalPath.split('/');
     if (path[1] === 'logout') {
         services_login.logout();
     } else if (path[1] === 'login') {
-        $scope.register_login = true;
-        $scope.show_login, $scope.show_recover_password, $scope.show_new_password = false;
+        $scope.show_recover, show_recover_wo_token = false;
+        $scope.show_register_login = true;
     } else if (path[1] === 'verify') {
         services_login.verify_email($route.current.params.token);
     } else if (path[1] === 'recover') {
         if ($route.current.params.token) {
-            $scope.show_new_password = true;
-            $scope.show_register, $scope.show_login, $scope.show_recover_password = false;
+            $scope.show_register_login, show_recover = false;
+            $scope.show_recover = true;
         } else {
-            $scope.show_recover_password = true;
-            $scope.show_register, $scope.show_login, $scope.show_new_password = false;
+            $scope.show_recover_wo_token = true;
+            $scope.show_register_login, show_recover_wo_token = false;
         }
     }
 

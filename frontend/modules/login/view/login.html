@@ -1,9 +1,49 @@
-<div class="login-wrap" ng-show="register_login">
-    <div class="login-html">
+<div class="login-wrap">
+
+    <div class="login-html" ng-show="show_recover">
+        <form id="new_password__form">
+            <h2 style="color:white;">New password</h2>
+            <div class="form__content">
+                <div class="form__input">
+                    <label for="password">
+                        <b style="color:white;">New password:</b>
+                    </label>
+                    <input type="password" placeholder="Enter password" id="password" name="password" required=""
+                        ng-model="new_password">
+                </div>
+                <div class="form__input">
+                    <label for="password1">
+                        <b style="color:white;">Repeat password:</b>
+                    </label>
+                    <input type="password" placeholder="Enter password" id="password1" name="password1" required="">
+                </div>
+                <div class="button_container"><input class="button" id="recover" type="button" value="Enter"
+                        ng-click="recover_password(new_password)"></div>
+            </div>
+        </form>
+    </div>
+
+    <div class="login-html" ng-show="show_recover_wo_token">
+        <form id="email__form" method="post">
+            <h2 style="color:white;">Recover password</h2>
+            <div class="form__content">
+                <div class="form__input">
+                    <label style="color:white;" for="email">
+                        <b>Email: </b>
+                    </label>
+                    <input type="text" class="input" placeholder="Enter email" id="email" name="email" required="" ng-model="email_recover"><br>
+                </div>
+                <div class="button_container"><input class="button" id="button_email" type="button" value="Enter" ng-click="send_email_recover(email_recover)"></div>
+            </div>
+        </form>
+    </div>
+
+    <div class="login-html" ng-show="show_register_login">
         <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Sign In</label>
         <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">Sign Up</label>
+
         <div class="login-form">
-            <form id="login_form" method="post">
+            <form id="login_form">
                 <div class="sign-in-htm">
                     <b id="google" style="color:white;" ng-click="social_login('google')">google</b>
                     <b id="github" style="color:white;" ng-click="social_login('github')">github</b>
@@ -14,7 +54,8 @@
                     </div>
                     <div class="group">
                         <label for="l_password" class="label">Password</label>
-                        <input id="l_password" type="password" class="input" data-type="password" name="password" ng-model="password">
+                        <input id="l_password" type="password" class="input" data-type="password" name="password"
+                            ng-model="password">
                         <div id="error_login_password" style="color: red;"></div>
                     </div>
                     <div class="group">
@@ -22,11 +63,12 @@
                         <label for="check"><span class="icon"></span> Keep me Signed in</label>
                     </div>
                     <div class="group">
-                        <input type="submit" class="button" value="Sign In" id="login_button" ng-click="login(username, password)">
+                        <input type="submit" class="button" value="Sign In" id="login_button"
+                            ng-click="login(username, password)">
                     </div>
                     <div class="hr"></div>
                     <div class="foot-lnk">
-                        <a id="forgot" href="#forgot">Forgot Password?</a>
+                        <a id="forgot" href="#recover">Forgot Password?</a>
                     </div>
                 </div>
             </form>
@@ -39,7 +81,8 @@
                     </div>
                     <div class="group">
                         <label for="password_r" class="label">Password</label>
-                        <input id="password_r" type="password_r" class="input" data-type="password_r" name="password_r" ng-model="password_r">
+                        <input id="password_r" type="password" class="input" data-type="password_r" name="password_r"
+                            ng-model="password_r">
                         <div id="error_password" style="color: red;"></div>
                     </div>
                     <div class="group">
@@ -48,7 +91,8 @@
                         <div id="error_email" style="color: red;"></div>
                     </div>
                     <div class="group">
-                        <input type="submit" class="button" value="Sign Up" id="register_button" ng-click="register(username_r, password_r, email_r)">
+                        <input type="submit" class="button" value="Sign Up" id="register_button"
+                            ng-click="register(username_r, password_r, email_r)">
                     </div>
                     <div class="hr"></div>
                     <div class="foot-lnk">
