@@ -13,7 +13,7 @@ app.factory('services_login', ['services', 'services_localstorage', '$rootScope'
                 if (result == '"error"') {
                     toastr.error("Incorrect password");
                 } else {
-                    services_localstorage.setSession(result);
+                    services_localstorage.setSession(token);
                     toastr.success("Login successful");
                     setTimeout(' window.location.href =  "#/home"', 1000);
                 }

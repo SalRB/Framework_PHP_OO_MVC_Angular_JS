@@ -48,4 +48,12 @@
             return $this -> bll -> get_load_related_BLL($args);
         }
 
+        public function get_load_likes($args) {
+            return $this -> bll -> get_load_likes_BLL($args);
+        }
+
+        public function get_update_likes($args) {
+            return $this -> bll -> get_update_likes_BLL($args);
+        }
+
     }

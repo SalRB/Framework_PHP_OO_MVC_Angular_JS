@@ -24,10 +24,10 @@ app.factory('services_social_login', ['services', 'services_localstorage', 'toas
                         token = token[2];
                         token = token.split("\\");
                         token = token[0];
-                        // console.log(token);
+                        console.log(token);
 
                         // localStorage.setItem("token", token);
-                        services_localstorage.setSession(data);
+                        services_localstorage.setSession(token);
                         toastr.success("Login successful");
                         setTimeout(' window.location.href =  "#/home"', 1000);
 

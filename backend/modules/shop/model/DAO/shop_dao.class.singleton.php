@@ -270,4 +270,25 @@ class shop_dao
         $stmt = $db->ejecutar($sql);
         return $db->listar($stmt);
     }
+
+    public function select_likes($db, $user)
+    {
+        $sql = "SELECT car FROM likes WHERE user = '$user'";
+        $stmt = $db->ejecutar($sql);
+        return $db->listar($stmt);
+    }
+
+    public function insert_like($db, $user, $car)
+    {
+        $sql = "INSERT INTO likes (user, car) VALUES ('$user','$car')";
+        $stmt = $db->ejecutar($sql);
+        return $db->listar($stmt);
+    }
+
+    public function delete_like($db, $user, $car)
+    {
+        $sql = "DELETE FROM likes WHERE user='$user' AND car='$car'";
+        $stmt = $db->ejecutar($sql);
+        return $db->listar($stmt);
+    }
 }

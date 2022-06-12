@@ -64,4 +64,17 @@ class shop_bll
 		return $this->dao->select_load_related($this->db, $args);
 	}
 
+	public function get_load_likes_BLL($args)
+	{
+		$jwt = jwt_process::decode($args['token']);
+		$jwt = json_decode($jwt, TRUE);
+
+		return $this->dao->select_likes($this->db, $jwt['name']);
+	}
+
+	public function get_update_likes_BLL($args)
+	{
+		return $this->dao->select_load_related($this->db, $args);
+	}
+
 }

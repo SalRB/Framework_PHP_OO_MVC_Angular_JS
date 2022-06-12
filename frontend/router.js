@@ -55,14 +55,6 @@ app.config(['$routeProvider', function ($routeProvider) {
         }).when("/recover/:token", {
             templateUrl: "frontend/modules/login/view/login.html",
             controller: "controller_login"
-            // }).when("/cart", {
-            //     templateUrl: "frontend/modules/cart/view/cart.html", 
-            //     controller: "controller_cart",
-            //     resolve: {
-            //         list_products: function (services) {
-            //             return services.post('cart', 'load_cart', {token: localStorage.token});
-            //         }
-            //     }
         }).otherwise("/home", {
             templateUrl: "frontend/modules/home/view/home.html",
             controller: "controller_home",
@@ -82,14 +74,14 @@ app.config(['$routeProvider', function ($routeProvider) {
 
 app.run(function ($rootScope, services, services_search) {
 
-    if(localStorage.token){
+    if (localStorage.token) {
         $rootScope.show_login = false;
         $rootScope.show_logout = true;
-    }else{
+    } else {
         $rootScope.show_login = true;
         $rootScope.show_logout = false;
     }
-    
+
 
     services_search.search_category();
     services_search.search_brand();

@@ -1,30 +1,6 @@
 app.factory('services_shop', ['services', '$rootScope', function (services, $rootScope) {
-    let service = { details: details, load_with_filters: load_with_filters, add_favs: add_favs, load_favs: load_favs, save_filters: save_filters, addMap: addMap };
+    let service = { details: details, load: load, load_with_filters: load_with_filters, add_favs: add_favs, load_favs: load_favs, save_filters: save_filters, addMap: addMap };
     return service;
-
-    function load_favs() {
-        if (localStorage.token) {
-            services.post('shop', 'load_like', { user: localStorage.token })
-                .then(function (response) {
-                    for (row in $rootScope.list_products) {
-                        $rootScope.list_products[row].favs_class = "bx-heart";
-                        var product = $rootScope.list_products[row];
-                        for (row in response) {
-                            if (response[row].codigo_producto == product.codigo_producto) {
-                                product.favs_class = "bxs-heart";
-                            };
-                        }
-                        $rootScope.list_products[row].favs_class = product.favs_class;
-                    }
-                }, function (error) {
-                    console.log(error);
-                });
-        } else {
-            for (row in $rootScope.list_products) {
-                $rootScope.list_products[row].favs_class = "bx-heart";
-            }
-        }
-    }
 
     function details(id) {
         services.post('shop', 'ShopDetails', { id })
@@ -33,15 +9,6 @@ app.factory('services_shop', ['services', '$rootScope', function (services, $roo
                 $rootScope.products = data;
                 // load_favs();
                 // load_api();
-            }, function (error) {
-                console.log(error);
-            });
-    }
-
-    function add_favs(codigo_producto, user) {
-        services.post('shop', 'click_like', { id: codigo_producto, user: user })
-            .then(function (response) {
-                console.log(response);
             }, function (error) {
                 console.log(error);
             });
@@ -91,6 +58,10 @@ app.factory('services_shop', ['services', '$rootScope', function (services, $roo
 
     }
 
+    function load(products) {
+        $rootScope.products = products;
+    }
+
     function load_with_filters(params) {
         console.log(params);
         services.post('shop', 'Filters', { params })
@@ -115,7 +86,7 @@ app.factory('services_shop', ['services', '$rootScope', function (services, $roo
         });
 
         products.forEach(product => {
-            console.log(product);
+            // console.log(product);
             const popup = new mapboxgl.Popup({ offset: 25 }).setHTML('<div class=' + product.ID + '" id="divpopup"><img src="http://localhost/Framework_PHP_OO_MVC_ANGUlAR_JS/frontend/views/images/cars/' + product.image + '">' +
                 '<h4>' + product.brand + ' ' + product.model + '</h4>' +
                 '<h4 style="color: rgb(177, 41, 0);">' + product.price + ' €</h4></div>');
@@ -125,8 +96,54 @@ app.factory('services_shop', ['services', '$rootScope', function (services, $roo
                 .setPopup(popup) // sets a popup on this markers
                 .addTo(map);
         });
-
-
     }
+
+    function load_favs() {
+        if (localStorage.token) {
+            // console.log('as');
+
+            let token = localStorage.getItem('token');
+            // console.log(token);
+            
+            // token = token.split('"');
+            // token = token[1];
+
+            services.post('shop', 'LoadLikes', { token: token })
+                .then(function (response) {
+                    console.log(response);
+                    for (row in $rootScope.products) {
+                        $rootScope.products[row].like = "fa-heart-o";
+                        var product = $rootScope.products[row];
+                        for (row in response) {
+                            // console.log(response[row].car);
+                            // console.log(product.ID);
+                            if (response[row].car == product.ID) {
+                                product.like = "fa-heart";
+                                // console.log($rootScope.products[row].like);
+                            };
+                        }
+                        // $rootScope.products[row].like = product.like;
+                        // console.log($rootScope.products[row].like);
+                    }
+                }, function (error) {
+                    console.log(error);
+                });
+
+        } else {
+            for (row in $rootScope.products) {
+                $rootScope.products[row].like = "fa-heart-o";
+            }
+        }
+    }
+
+    function add_favs(codigo_producto, user) {
+        services.post('shop', 'click_like', { id: codigo_producto, user: user })
+            .then(function (response) {
+                console.log(response);
+            }, function (error) {
+                console.log(error);
+            });
+    }
+
 
 }]);

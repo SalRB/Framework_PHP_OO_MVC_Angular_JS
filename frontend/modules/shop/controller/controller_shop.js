@@ -4,7 +4,6 @@ app.controller('controller_shop', function ($scope, $window, $rootScope, $route,
         location.href = "#/product/" + this.product.ID;
     };
 
-
     let path = $route.current.originalPath.split('/');
 
     if (path[1] === 'shop') {
@@ -13,7 +12,6 @@ app.controller('controller_shop', function ($scope, $window, $rootScope, $route,
         $scope.show_details = false;
 
         var local = localStorage.getItem('filters');
-        // console.log(local.length);
 
         if (local.length > 3) {
             local = JSON.parse(local);
@@ -21,11 +19,11 @@ app.controller('controller_shop', function ($scope, $window, $rootScope, $route,
         }
 
         else {
-            $scope.products = list_products;
             services_shop.addMap(list_products);
-
-            // $scope.pagination(list_products);
+            services_shop.load(list_products);
+            services_shop.load_favs();
         }
+
     } else if (path[1] === 'product') {
         $scope.show_list_product = false;
         $scope.show_details = true;
@@ -57,16 +55,16 @@ app.controller('controller_shop', function ($scope, $window, $rootScope, $route,
         location.reload();
     };
 
-    // $scope.add_favs = function () {
-    //     if (localStorage.token) {
-    //         services_shop.add_favs(this.product.codigo_producto, localStorage.token);
-    //         if (this.product.favs_class == "bxs-heart") {
-    //             this.product.favs_class = "bx-heart";
-    //         } else {
-    //             this.product.favs_class = "bxs-heart";
-    //         }
-    //     } else {
-    //         location.href = "#/login";
-    //     }
-    // }
+    $scope.add_favs = function () {
+        if (localStorage.token) {
+            services_shop.add_favs(this.product.codigo_producto, localStorage.token);
+            if (this.product.favs_class == "bxs-heart") {
+                this.product.favs_class = "bx-heart";
+            } else {
+                this.product.favs_class = "bxs-heart";
+            }
+        } else {
+            location.href = "#/login";
+        }
+    }
 });

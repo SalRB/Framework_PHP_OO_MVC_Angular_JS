@@ -48,4 +48,14 @@ class controller_shop
     {
         echo json_encode(common::load_model('shop_model', 'get_load_related', $_POST['related']));
     }
+
+    function LoadLikes()
+    {
+        echo json_encode(common::load_model('shop_model', 'get_load_likes', $_POST));
+    }
+
+    function UpdateLikes()
+    {
+        echo json_encode(common::load_model('shop_model', 'get_update_likes', $_POST));
+    }
 }
