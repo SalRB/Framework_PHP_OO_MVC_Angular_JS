@@ -57,11 +57,12 @@ app.controller('controller_shop', function ($scope, $window, $rootScope, $route,
 
     $scope.add_favs = function () {
         if (localStorage.token) {
-            services_shop.add_favs(this.product.codigo_producto, localStorage.token);
-            if (this.product.favs_class == "bxs-heart") {
-                this.product.favs_class = "bx-heart";
+            if (this.product.like == "fa-heart") {
+                services_shop.UpdateLikes(this.product.ID, localStorage.token, 'dislike');
+                this.product.like = "fa-heart-o";
             } else {
-                this.product.favs_class = "bxs-heart";
+                services_shop.UpdateLikes(this.product.ID, localStorage.token, 'like');
+                this.product.like = "fa-heart";
             }
         } else {
             location.href = "#/login";

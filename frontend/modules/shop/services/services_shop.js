@@ -1,5 +1,5 @@
 app.factory('services_shop', ['services', '$rootScope', function (services, $rootScope) {
-    let service = { details: details, load: load, load_with_filters: load_with_filters, add_favs: add_favs, load_favs: load_favs, save_filters: save_filters, addMap: addMap };
+    let service = { details: details, load: load, load_with_filters: load_with_filters, UpdateLikes: UpdateLikes, load_favs: load_favs, save_filters: save_filters, addMap: addMap };
     return service;
 
     function details(id) {
@@ -100,11 +100,9 @@ app.factory('services_shop', ['services', '$rootScope', function (services, $roo
 
     function load_favs() {
         if (localStorage.token) {
-            // console.log('as');
 
             let token = localStorage.getItem('token');
-            // console.log(token);
-            
+
             // token = token.split('"');
             // token = token[1];
 
@@ -136,10 +134,10 @@ app.factory('services_shop', ['services', '$rootScope', function (services, $roo
         }
     }
 
-    function add_favs(codigo_producto, user) {
-        services.post('shop', 'click_like', { id: codigo_producto, user: user })
+    function UpdateLikes(ID, token, like) {
+        services.post('shop', 'UpdateLikes', { car: ID, token: token, like: like })
             .then(function (response) {
-                console.log(response);
+                // console.log(response);
             }, function (error) {
                 console.log(error);
             });

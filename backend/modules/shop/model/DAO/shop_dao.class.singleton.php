@@ -281,14 +281,12 @@ class shop_dao
     public function insert_like($db, $user, $car)
     {
         $sql = "INSERT INTO likes (user, car) VALUES ('$user','$car')";
-        $stmt = $db->ejecutar($sql);
-        return $db->listar($stmt);
+        return $stmt = $db->ejecutar($sql);
     }
 
     public function delete_like($db, $user, $car)
     {
         $sql = "DELETE FROM likes WHERE user='$user' AND car='$car'";
-        $stmt = $db->ejecutar($sql);
-        return $db->listar($stmt);
+        return $stmt = $db->ejecutar($sql);
     }
 }

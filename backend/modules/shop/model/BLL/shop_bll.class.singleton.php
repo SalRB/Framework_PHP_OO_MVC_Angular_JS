@@ -45,7 +45,7 @@ class shop_bll
 	{
 		return $this->dao->select_count_with_filters($this->db, $args);
 	}
-	
+
 	public function get_car_datails_BLL($args)
 	{
 		$var = array();
@@ -74,7 +74,15 @@ class shop_bll
 
 	public function get_update_likes_BLL($args)
 	{
-		return $this->dao->select_load_related($this->db, $args);
-	}
+		$jwt = jwt_process::decode($args['token']);
+		$jwt = json_decode($jwt, TRUE);
 
+		if ($args['like'] == 'like') {
+			return $this->dao->insert_like($this->db, $jwt['name'], $args['car']);
+			exit;
+		} else {
+			return $this->dao->delete_like($this->db, $jwt['name'], $args['car']);
+			exit;
+		}
+	}
 }
